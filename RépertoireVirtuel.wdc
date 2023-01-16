@@ -54,6 +54,12 @@ class :
       procédure gère_uri( uri_a_tester est chaine ansi) : booléen
       
       si ChaîneCommencePar( uri_a_tester, :uri_avec_slash ) ALORS
+      	// sécurité ".." interdit dans le uri pour ne jamais remonter dans l'arborescence locale
+      	si position(uri_a_tester,"..") >0 ALORS
+      		renvoyer faux
+      	FIN
+      	
+      	
       	renvoyer vrai
       FIN
       renvoyer faux
