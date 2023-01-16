@@ -1,0 +1,85 @@
+#To edit and compare internal_properties, use WINDEV integrated tools.
+#Internal properties refer to the properties of controls in windows, reports, etc.
+info :
+ name : RépertoireVirtuel
+ major_version : 27
+ minor_version : 0
+ type : 4
+ description : ""
+ subtype : 0
+class :
+ identifier : 0x13c4ea32011eeb62
+ internal_properties : BwAAAAcAAAB2/vstTMCJbS/hlxjFxirSqKvCUuv8YxgpWyl7S3iA
+ code_elements :
+  type_code : 10
+  p_codes :
+   -
+     code : |1+
+      RépertoireVirtuel est une Classe
+      protégé
+      	uri_avec_slash est chaine ANSI // ex : "/images/"
+      	répertoire_local est chaine UNICODE // ex:  "C:/Mon site/images/"
+      fin
+     type : 131072
+  procedures :
+   -
+     name : Constructeur
+     procedure_id : 1424520882644052834
+     type_code : 27
+     code : |1+
+      procédure Constructeur()
+     type : 589824
+   -
+     name : Destructeur
+     procedure_id : 1424520882644118370
+     type_code : 28
+     code : |1+
+      procédure Destructeur()
+     type : 655360
+   -
+     name : Init
+     procedure_id : 1424527531254057257
+     type_code : 12
+     code : |1-
+      procédure Init( uri est chaine ansi, répertoire est chaine)
+      :uri_avec_slash =  ["/"] + uri + ["/"]
+      :répertoire_local = ComplèteRep( répertoire )
+     type : 458752
+   -
+     name : gère_uri
+     procedure_id : 1424525070237616958
+     type_code : 12
+     code : |1+
+      // indique si on gère une uri donbée
+      procédure gère_uri( uri_a_tester est chaine ansi) : booléen
+      
+      si ChaîneCommencePar( uri_a_tester, :uri_avec_slash ) ALORS
+      	renvoyer vrai
+      FIN
+      renvoyer faux
+     type : 458752
+   -
+     name : nom_fichier_local
+     procedure_id : 1424525873396557442
+     type_code : 12
+     code : |1-
+      // renvoie le nom du fichier local correspond a une uri donnée
+      procédure nom_fichier_local( uri_demandée est chaine ansi ) : chaine
+      
+      taille_debut est un entier = taille(:uri_avec_slash)
+      partie_relative est chaine = Milieu(uri_demandée,taille_debut+1)
+      
+      nom_fichier est chaine = :répertoire_local  + partie_relative
+      renvoyer nom_fichier
+     type : 458752
+  procedure_templates : []
+  property_templates : []
+ code_parameters :
+  internal_properties : BwAAAAcAAAA6ih3UbgNXHwTtiPSFUEj+2fi/m7v4QV2rqidAupM=
+  original_name : Classe1
+resources :
+ string_res :
+  identifier : 0x13c4ea27011bbfdd
+  internal_properties : BwAAAAcAAAAnMYFQ1bL/vz9ehh7L22SNNSlIzGTOI8h5F/WtgDNP
+custom_note :
+ internal_properties : BwAAAAcAAABtB9HWVzrXO2+4NDRVK0vmzaNKrCKqH1DBX30lMmGZ

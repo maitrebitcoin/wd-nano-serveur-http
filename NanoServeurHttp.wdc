@@ -17,9 +17,6 @@ class :
      code : |1-
       NanoServeurHttp est une Classe
       PUBLIQUE
-      	// callback
-      	
-      	tab_eve_uri est un tableau associatif de procédure
       	// appelée si aucune uri ne correpond 
       	eve_requete_non_traitée est une procédure
       	
@@ -29,6 +26,11 @@ class :
       	socket_attente_connexion est chaine	
       	est_démarré est un booléen
       	thread_attente_connexion est chaine
+      	// callback par uri
+      	tab_eve_uri est un tableau associatif de procédure	
+      	// callback par uri
+      	tab_repertoire_virtuel est un tableau de RépertoireVirtuel
+      	
       	
       	stop_thread est un booléen
       
@@ -64,9 +66,20 @@ class :
      type_code : 12
      code : |1+
       // ajouter une procédure a appeler sir une ur est demandée 
-      procédure ajoute_traitement_uri( uri est chaine, procédure_si_uri est procédure )
+      procédure ajoute_traitement_uri( local uri est chaine ansi, procédure_si_uri est procédure )
       
       tab_eve_uri[uri] = procédure_si_uri
+     type : 458752
+   -
+     name : ajoute_répertoire_virtuel
+     procedure_id : 1424521750227713881
+     type_code : 12
+     code : |1-
+      procédure ajoute_répertoire_virtuel( LOCAL uri est chaine ansi, répertoire_local est une chaîne ANSI )
+      
+      repertoire_virtuel est RépertoireVirtuel
+      repertoire_virtuel.Init(uri,répertoire_local)
+      tab_repertoire_virtuel.Ajoute(repertoire_virtuel)
      type : 458752
    -
      name : démarreServeur
@@ -143,7 +156,12 @@ class :
       	// appel code pour cette uri
       	proc est une procédure = tab_eve_uri[uri_demandée]
       	proc(requete, réponse)
-      sinon si eve_requete_non_traitée<>null ALORS
+      sinon
+      	// gestion des répertoire virtuels
+      	cherche_répertoire_virtuel(uri_demandée, réponse)	
+      fin
+      
+      si PAS réponse.reponse_renvoyée ALORS
       	// uri non traitée
       	eve_requete_non_traitée(requete, réponse)
       FIN
@@ -153,6 +171,23 @@ class :
       	// erreur 404
       	réponse.envoie_erreur_404()
       FIN
+     type : 458752
+   -
+     name : cherche_répertoire_virtuel
+     procedure_id : 1424527986520630878
+     type_code : 12
+     code : |1+
+      procédure cherche_répertoire_virtuel( uri est chaine ANSI, réponse est un ReponseHttp)
+      
+      POUR TOUT répertoire_virtuel DE :tab_repertoire_virtuel
+      	si répertoire_virtuel.gère_uri(uri) ALORS
+      		// renvoyer le fichier
+      		nom_fichier est chaine = répertoire_virtuel.nom_fichier_local(uri)
+      		réponse.envoie_fichier(nom_fichier)
+      		renvoyer vrai
+      	FIN
+      FIN
+      renvoyer faux
      type : 458752
    -
      name : _lit_requete_brute
