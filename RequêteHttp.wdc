@@ -22,6 +22,7 @@ class :
       	protocol   est chaine ansi // ex : "HTTP/1.1"
       	tab_paramètre_entete est un tableau associatif de chaine ansi // ex: tab_paramètre_entete["User-Agent"] => " Mozilla/5.0"
       	tab_paramètre_get    est un tableau associatif de chaine unicode  // ex: tab_paramètre_get["lang"] => "fr"
+      	duree_lecture est durée // temps mis pour la lire depuis le réseau
       fin
      type : 131072
   procedures :

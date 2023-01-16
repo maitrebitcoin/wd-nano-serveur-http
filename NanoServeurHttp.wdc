@@ -36,6 +36,7 @@ class :
       
       fin
       
+      CONSTANTE MARQUE_FIN_HEADER  = RC+RC
       CONSTANT sCONTENT_LENGTH = "Content-Length:"
      type : 131072
   procedures :
@@ -134,11 +135,12 @@ class :
       // gestion d'une reuête htpp vi la socket de communication <canal_http>
       procédure privée _traite_une_requete_http( canal_http )
       
-      // gestion manuelle du calcul de la taille du message
-      SocketChangeModeTransmission(canal_http,SocketMarqueurFin)
+      
       
       // lecture de la requête
-      buffer_req_http est un chaine ansi = _lit_requete_brute(canal_http,30s)
+      buffer_req_http est un chaine ansi 
+      duree_lecture est une durée
+      (buffer_req_http,duree_lecture) = _lit_requete_brute(canal_http,30s)
       SI buffer_req_http=""  ALORS
       	// Erreur
       	retour
@@ -146,6 +148,7 @@ class :
       
       // décoder la requete
       requete  est RequêteHttp( buffer_req_http )
+      requete.duree_lecture = duree_lecture
       // réponse
       réponse est ReponseHttp(canal_http)
       
@@ -194,23 +197,21 @@ class :
      procedure_id : 1424197819483172657
      type_code : 12
      code : |1+
-      procédure PRIVÉE _lit_requete_brute(canal_http, duree_max est durée) : buffer
+      procédure PRIVÉE _lit_requete_brute(canal_http, duree_max est durée) : (buffer, durée)
       
-      chrono_lecture est un Chrono
-      chrono_lecture.Début()
+      chrono_temp_lecture_requete est un Chrono
+      chrono_temp_lecture_requete.Début()
       
       buffer_req_http est un Buffer 
-      // lire tant qu'on a pars la marque de fin du header
-      marque_fin_header est chaine = RC+rc
-      tantque position(buffer_req_http,marque_fin_header)<=0
-      	buffer_req_http +=  SocketLit(canal_http,Faux,0)
-      	si chrono_lecture > duree_max ALORS
-      		renvoyer "" // timeout
-      	FIN
-      FIN
-      trace(chrono_lecture)
       
-      // on recherche la taille dans le header
+      // lire l'entête http jusqu'au 2 RC
+      SocketChangeModeTransmission(canal_http,SocketMarqueurFin,marque_fin_header)
+      buffer_req_http +=  SocketLit(canal_http,faux,duree_max)
+      si buffer_req_http="" ALORS
+      	renvoyer ("", chrono_temp_lecture_requete.Valeur )
+      FIN
+      
+      // recherche la taille totale dans le header
       procédure interne _lit_taille()
       	// ex : "Content-Length: 88"
       	pos_taille est entier = position(buffer_req_http,sCONTENT_LENGTH)
@@ -232,21 +233,22 @@ class :
       // si il n'y en a pas
       si taille_message_body = 0 ALORS
       	// terminé
-      	renvoyer buffer_req_http
+      	renvoyer (buffer_req_http,chrono_temp_lecture_requete.Valeur)
       FIN
       
       taille_message_totale est chaine = marque_fin_header+2*taille(rc)+taille_message_body
       
       // lire la fin du message
+      SocketChangeModeTransmission(canal_http,SocketMarqueurFin)
       TANTQUE taille(buffer_req_http)<taille_message_totale
       	buffer_req_http +=  SocketLit(canal_http,Faux,0)
-      	SI chrono_lecture > duree_max ALORS
-      		RENVOYER "" // timeout
+      	SI chrono_temp_lecture_requete > duree_max ALORS
+      		RENVOYER ("", chrono_temp_lecture_requete.Valeur) // timeout
       	FIN	
       FIN
       
       // OK
-      renvoyer buffer_req_http
+      renvoyer (buffer_req_http, chrono_temp_lecture_requete.Valeur)
       
       
      type : 458752
