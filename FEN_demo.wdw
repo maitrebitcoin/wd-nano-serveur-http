@@ -38,13 +38,13 @@ window :
          	trace(req.get_uri())
          	réponse.envoie_erreur_404()
          }
-         mon_serveur.tab_eve_uri["/"] =  ( req , réponse ) => {	
+         mon_serveur.ajoute_traitement_uri("/",  ( req , réponse ) => {	
          	Trace(req.get_uri())
-         	réponse.envoie_chaine("vous avez demandé l'index") 
-         }
+         	réponse.envoie_chaine("<html><body>voici la page <b>racine</b> du site <hr>en construction... </body></html>") 
+         })
          mon_serveur.tab_eve_uri["/test"] =  ( req , réponse ) => {	
          Trace(req.get_uri())
-         aide_fr est chaine = "parametres recus :<rc>" 
+         aide_fr est chaine = "paramètres recus :<rc>" 
          pour tous valeur,clé de req.tab_paramètre_get
          	aide_fr += rc
          	aide_fr += "<hr>"

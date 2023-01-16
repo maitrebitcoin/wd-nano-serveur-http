@@ -57,8 +57,17 @@ class :
       	SocketFerme(:socket_attente_connexion)
       fin
       
-      
      type : 655360
+   -
+     name : ajoute_traitement_uri
+     procedure_id : 1424518571950257774
+     type_code : 12
+     code : |1+
+      // ajouter une procédure a appeler sir une ur est demandée 
+      procédure ajoute_traitement_uri( uri est chaine, procédure_si_uri est procédure )
+      
+      tab_eve_uri[uri] = procédure_si_uri
+     type : 458752
    -
      name : démarreServeur
      procedure_id : 1424196500926923026
@@ -150,7 +159,7 @@ class :
      procedure_id : 1424197819483172657
      type_code : 12
      code : |1+
-      procédure _lit_requete_brute(canal_http, duree_max est durée) : buffer
+      procédure PRIVÉE _lit_requete_brute(canal_http, duree_max est durée) : buffer
       
       chrono_lecture est un Chrono
       chrono_lecture.Début()
