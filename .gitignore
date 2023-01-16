@@ -1,0 +1,38 @@
+# .gitignore for WINDEV, WEBDEV and WINDEV Mobile projects
+#
+# WINDEV – WEBDEV – WINDEV Mobile
+Backup
+Bin
+cache.gestion de sources
+Corbeille
+Groupware
+Lastsave
+Sauvegarde
+Gabarits
+*.cache
+*.cpl
+*.env
+*.rep
+*.waudit
+*.wdcoverage
+*.wpf
+*.dll
+*.exe
+HstDuree.log
+Folder.ico
+desktop.ini
+
+#
+#WEBDEV
+*\res
+*.awl
+*.awp
+#
+# WINDEV Mobile 
+android
+*.xcode.gen
+Taches/Tache.FIC
+Taches/Tache.mmo
+Taches/Tache.ndx
+EXE/Exe win64 gui
+

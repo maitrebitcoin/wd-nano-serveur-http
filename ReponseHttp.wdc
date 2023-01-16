@@ -1,0 +1,131 @@
+#To edit and compare internal_properties, use WINDEV integrated tools.
+#Internal properties refer to the properties of controls in windows, reports, etc.
+info :
+ name : ReponseHttp
+ major_version : 27
+ minor_version : 0
+ type : 4
+ description : ""
+ subtype : 0
+class :
+ identifier : 0x13c4436d004477b7
+ internal_properties : BwAAAAcAAAB2/vstTMCJbS/hlxjFxirSqKvCUuv8YxgpWyl7S3iA
+ code_elements :
+  type_code : 10
+  p_codes :
+   -
+     code : |1+
+      ReponseHttp est une Classe
+      	canal_http est chaine
+      	reponse_renvoyée est un booléen
+      fin
+     type : 131072
+  procedures :
+   -
+     name : Constructeur
+     procedure_id : 1424337517590968247
+     type_code : 27
+     code : |1+
+      procédure Constructeur(canal)
+      :canal_http = canal
+     type : 589824
+   -
+     name : Destructeur
+     procedure_id : 1424337517591033783
+     type_code : 28
+     code : |1+
+      procédure Destructeur()
+     type : 655360
+   -
+     name : envoie_chaine
+     procedure_id : 1424337908433148500
+     type_code : 12
+     code : |1+
+      procédure envoie_chaine( chaine_reponse est chaine ANSI, type_mime est chaine ansi =  "text/html" )
+      
+      message_len		est entier		= Taille(chaine_reponse)
+      header_http		est chaîne ANSI	= "HTTP/1.0 200" + RC + "Content-Length: [%message_len%]" + RC+ "Content-Type: " + type_mime
+      
+      SocketEcrit(canal_http,header_http+RC+RC+chaine_reponse)
+      
+      reponse_renvoyée = Vrai
+     type : 458752
+   -
+     name : envoie_fichier
+     procedure_id : 1424349053875615179
+     type_code : 12
+     code : |1+
+      procédure envoie_fichier( nom_complet_fichier est chaine)
+      
+      // charger le fichier
+      buffer_contenu_du_fichier est chaine ANSI = fChargeBuffer(nom_complet_fichier)
+      si ErreurDétectée ALORS
+      	envoie_erreur_404()
+      	retour
+      FIN
+      // déterminer le type mime
+      le_type_mime est chaine ansi = "text/html"
+      selon Minuscule(fExtraitChemin(nom_complet_fichier,fExtension))
+      	CAS "jpg"  : le_type_mime  = typeMimeJPEG
+      	CAS "jpeg" : le_type_mime  = typeMimeJPEG
+      	CAS "png"  : le_type_mime  = typeMimePNG
+      	CAS "ico"  : le_type_mime  = "image/x-icon"
+      	CAS "css"  : le_type_mime  = "text/css"
+      	CAS "js"   : le_type_mime  = "text/javascript"
+      FIN
+      // rebond
+      envoie_chaine(buffer_contenu_du_fichier,le_type_mime)
+     type : 458752
+   -
+     name : envoie_erreur_404
+     procedure_id : 1424343070984451031
+     type_code : 12
+     code : |1+
+      // renvoie la fameuse erreur 404 : page non trouvée
+      PROCÉDURE envoie_erreur_404()
+      
+      page_html est chaine ANSI = [
+      <!DOCTYPE html>
+      <head>
+        <title>page not found</title>
+      </head>
+      <style>
+      body { 
+      	background-color: #80908A;
+      }
+      h1 {
+      	color:red;
+      	text-align:center;
+      }
+      </style>
+      <body>
+        <h1> &#129320; Oups... </h1>
+        <hr>
+        <p>
+        <h2>404 : page not found</h2>
+      </body>
+      </html>
+      ]
+      taille_page est un entier = Taille(page_html)
+      
+      header_erreur_404 est chaine ANSI = [
+      HTTP/1.0 404 NOT_FOUND
+      Content-Type: text/html; charset=utf-8
+      Content-Length: [%taille_page%]
+      Content-Language: en-US
+      ]
+      
+      SocketEcrit(canal_http,header_erreur_404+RC+RC+page_html)
+      reponse_renvoyée = Vrai
+     type : 458752
+  procedure_templates : []
+  property_templates : []
+ code_parameters :
+  internal_properties : BwAAAAcAAAA6ih3UbgNXHwTtiPSFUEj+2fi/m7v4QV2rqidAupM=
+  original_name : Classe1
+resources :
+ string_res :
+  identifier : 0x13c4435900412b6c
+  internal_properties : BwAAAAcAAAAnMYFQ1bL/vz9ehh7L22SNNSlIzGTOI8h5F/WtgDNP
+custom_note :
+ internal_properties : BwAAAAcAAABtB9HWVzrXO2+4NDRVK0vmzaNKrCKqH1DBX30lMmGZ

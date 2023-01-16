@@ -1,0 +1,142 @@
+#To edit and compare internal_properties, use WINDEV integrated tools.
+#Internal properties refer to the properties of controls in windows, reports, etc.
+info :
+ name : FEN_demo
+ major_version : 27
+ minor_version : 0
+ type : 2
+ description : ""
+ subtype : 0
+window :
+ name : FEN_demo
+ identifier : 0x23c3b534014df0cf
+ internal_properties : BwAAAAcAAADQidDHvk4qxx4fqGnm23OytisH8rrZ8HDWmuCHB/B4SGUH++gZRy+YiUIwh1AfPkQJEANh299RyO/7ZpK7nDAdQvUhbD9Eg81rvutpZw4RJXBfX4qBkoJ1ZQZhT3XllBy9X53fVnA0D8w+4AKxt9wxu8NZTDd+WEI01DkdMfE7cE7jkSLy+iAmOv0Gdt0d5RcixwOBXzxAh8fMIxhJQq7MsZU6/3v/Dd1KBtxG6UYszEepB8O6Mr6cFhQZKnOqW5ki9KFlbbKPMPoWegXdlifzhpFAqtk4riS4QNZGLYnMmxP013mNuanLZ8OgSKkxGP7NDcJNvnVOFfU2VagtxwvKuM2L/nmVJrMINn6Okd5OAA5bJWOzPM9enQQTC+meTt7u1fIme0lJypm4t/Zh5SKgCDD6uwqZkMQ+CiagGGdQxOPHb7gCLf5IThMZB4bRBDPLdk1HVBb8BPV4Ntra9Iddhcnfu+IMgDNoRlhqNwBpLmCWbA0ZBl6em9jsiXBbS7spy6dnWraUi32gZH09aACatFmXXSwZFGfsr8O/mo8Ckq7SeqiFQAPWpK/r1M6SEbIGEjxdJM/fCmGAhBab9ow69I0Xfzr9QR7jyn96Cfq/yJhGYpPpumiWLJ2HLWh9wiZw3O3wedpZqhjDTw==
+ properties :
+  width : 581
+  height : 189
+  widthClient : 579
+  heightClient : 157
+ controls :
+  -
+    name : BTN_RUM
+    identifier : 0x23c3b5370192fac2
+    internal_properties : BwAAAAcAAAAo6GkrRK9CrYwOMnE9lH68VJdv1kzL/gya734uU4qU4ckwYLjTC1+xQpQJtw0JNkdHiv6kMuYtPO6pDcP1+lu6OSndSM6rSHN6FbUemnizDm9eSvbQL+ctIAFqB1axyy4FJ5hLVG67oHK97QVw/+Q2+nRr7LDfadmHN2M+OgHxK2P3ipgMcBTMVdJneAThVkhuVOaQAypYQAzugGzIL1Nv75P1CnKAfJOTjj3Rl6XhN/l4GCm0iQGLHzT+UEoxYpMMcfnQCEM04C0u25BA/n0uNOh46aXt8180XS3LRquLdtOjVBPCMXQY4SaC/xkegwkZDQM+y6G74FVOKockQQT9wamkc7SHPhOA1UaXonmuXboFrt+SPWvlULE4/Cp6lB9huInBVcxldg//6dynaW0RdWxVZhgGsilmDrrl6v/bZyL7is/RlSf3O4Vw8+/3XlftkU+35yQ2q/xWsGfU5wZ41Rqhhgoe00rDbzLMFOSU4Lv72LynBK2+DwTVWQ3l6jz5IPS4Go+RvWfTMwKx06ufmqP5Q9PhZ8eDPU16W7LlWfgwPDxk45a6lS+1BjPD47oSRBzZXXi7P/rlXtlEi756RURmCQKaL4/6egkPLuQW3JEBULMvr9/DCswmgr/+zhbXekKrvMMoy8OLxSo2+r1cV4jIbBQssQvCNjmTc+/jusa/BgD1Vz3GZRYbonk237nsDKsoTaH+adxgWtp5L4fQaX0JlezOw2oFVRWEPZ/y3rG/EWd/hfj6hMIuSGGxIvDzmLCTxTGkipIMvnKYWcZb9naqMqfLWtYBrGUjN+Lcg0SPDZBhNevyyiI=
+    properties :
+     x : 21
+     y : 26
+     width : 131
+     height : 65
+    type : 4
+    code_elements :
+     type_code : 4
+     p_codes :
+      -
+        code : |1-
+         
+         
+         mon_serveur.eve_requete_non_traitée =  ( req , réponse ) => {	
+         	trace(req.get_uri())
+         	réponse.envoie_erreur_404()
+         }
+         mon_serveur.tab_eve_uri["/"] =  ( req , réponse ) => {	
+         	Trace(req.get_uri())
+         	réponse.envoie_chaine("vous avez demandé l'index") 
+         }
+         mon_serveur.tab_eve_uri["/test"] =  ( req , réponse ) => {	
+         Trace(req.get_uri())
+         aide_fr est chaine = "parametres recus :<rc>" 
+         pour tous valeur,clé de req.tab_paramètre_get
+         	aide_fr += rc
+         	aide_fr += "<hr>"
+         	aide_fr += "<b>"+clé+"</b> = "
+         	aide_fr += valeur
+         FIN
+         
+         réponse.envoie_chaine(aide_fr) 
+         }
+         
+         
+         num_port est un entier = 8081
+         soit (bok, err ) = mon_serveur.démarreServeur(num_port)
+         si pas bok ALORS
+         	trace(err )
+         	retour
+         FIN
+         
+         
+         LIB_STATUS = "En cours, port " + num_port
+         LIB_STATUS..Couleur = VertFoncé
+         BTN_RUM..Grisé = vrai
+        type : 18
+      -
+        type : 161
+        enabled : false
+  -
+    name : LIB_STATUS
+    identifier : 0x23c3b53d01ce10cb
+    internal_properties : BwAAAAcAAACOWbLUiBeFrxpTWVxJFm5ZXeuG/IOVNEG1NKFQULmwvL60pT92GvacfgUgfINl/n66avboB0Fi9gFwOwpHcmAY6PYYxRAvBV1d1jfSgKjhpqRFeVbhmwmJ26HQCPnUgx3V6hajKz87Pfj5T5rJLC8u/Npy6Jd2yWpE6u3DGxnOFvAvbsWS/ZrcVGNRfBiSGi/SyL12n2O3kMBOFNh/gIHIPTmTNMR2PfsiaO3MalzQFRGm7VWuHfpX6WrYVbdmqGDqUl8qzxzhh07F9UuWvaNIfDNkzkRuPnSkug0J9FEnilqbnlpR4rOmz70NR/JfWk/BBmZu9b7T7+GGP/zHFg09N+udZJTMXwY+FdEw9tPpQi2J20GrJDBZla2lNKvmZ6Rf4zZiQ3kUizDTC5RxXR+ffVe6a0y/x5RqR1AcI1G5EIHvJMjzwrwH0VVfsRvViFIwvemQO96EurdJzQ9aFYt90QnSS2VMfT0+ZGb4Lf5MM5kc9oBQ8py4V7fbMoH8lf7jeYU=
+    properties :
+     x : 173
+     y : 26
+     width : 368
+     height : 71
+    type : 3
+    code_elements :
+     type_code : 2
+     p_codes : []
+  -
+    name : BTN_Lancer_un_naivgateur
+    identifier : 0x23c3c4ac013a5d70
+    internal_properties : BwAAAAcAAADbEnrXiUfr7mr0x3qROnguXbw/XcpCKIhjIP4S4pNFON+wb7R1tO0RW3VlE8bCcXKlernsekWDdL3AF9HcZxwp/1vgSA4YvLB5sud+sR8FHzcamQPy8FKDgsd8w6UqCcWK1PcrPRQVDHSY+abA8zkVsTsxk3Jm8kLT+IlmfycNO0wbQB6q2B8LkfICKBFW8pA74vwZvuo4VbZyYn8m4Y7HbJ1DdVpETepyJnxymTCai1aLRI4VW5S4zNU8/sjqtvqhQUFnNAqmfBppko2XVORpP2qTyqFZqydLw4K/YG+MUoJnUvvU4nTaRKSe8PicXYJj9dap9m5XHTWYYIelHnJcgNsR8j+3qGOAKu+Xl/+8F4zcu7N97yAGweBivGxs5VfriWlnxD3Ub5Yp3KOTeeSJyrF3uVkOTBJDDbIEo6dgctFpHiAd9iUReanothUovwvGO5tA6UvwWbIEIIhGxLPkWLIVr8LXqy6fKxpbdrU19IwXqN8dAwVSN6BTAg3uk17oZtLrdOZJMeefGVu5WmL7h1cxzkeQ95NLI4eB822ACeN4tOVYYuiYy31bH6f41OpjwuI+DzlTK0rratDQlOeW7vDSSr57ZYk4piM6hmeFnMYTtkSPur3VNBg6Pc0jE/pQij5W5mTwR3+D74s+Y1piROigiYQNN/U4VgPAtlTTwdZD474EA8B1zAEMeW4UDElx/vZru5L8QZ667UhGGv1CZH3COYn4xCnTuz/0kLFX/vD0cwOSuZ7Jq52f9W5sjz5vvOwbEXHzrT5Q3vueqUL/W8+9crNvW4O6BKHSYpv6LxeVv5p3Cn/Tb9NrzMMPQglvzCHTIiv2Gxkt8lkXHZMXjvQ4
+    properties :
+     x : 26
+     y : 109
+     width : 126
+     height : 24
+    type : 4
+    code_elements :
+     type_code : 4
+     p_codes :
+      -
+        code : |1+
+         LanceAppliAssociée("http://localhost:8081/")
+        type : 18
+      -
+        type : 161
+        enabled : false
+ menu :
+  name : _Menu
+  identifier : 0x292573e513b5f221
+  internal_properties : BwAAAAcAAABHivBqFH8xYQq/QELUltmClIuqm9KM3lg0XSaBAQ41WqT06R9JfU0qGK5sHUl8/xHCuvP3y9tLeLLOVaAgM2FjnfwSCRBgXqneLsHogwTYpIXuB1zp2uXtmOXYyGd6i+ek6BBvtJ0ylgF/MxkRihdZ26pl/9Jf5c+sxo07G0ZzHfcLEu9WD07gTSld25EPGWjvi/e5TxaHOZSRE8C5Ig+YdJawYdK89l+x1ofEmw3pfCNLUe3tNoiwg4AbC1jLdufmJ97Xc0JHDAy7gJsHBzEWwcuroqy2By4PJ4c6Wg==
+  options : []
+ languages :
+  - fr-FR
+ popup_menus : []
+ message_bar :
+  internal_properties : BwAAAAcAAADG0006i3ptxMcUE+O5cGvDhb43eRlY9UEE1z/7izK93v/ToMiwACETQQw4eQhZuJRMFa6SBwwT+zSdDbdc5HEkXDob51ldPFNKsP+0MWY=
+ code_elements :
+  type_code : 1
+  p_codes :
+   -
+     code : |1-
+      PROCEDURE MaFenêtre()
+      
+      
+      mon_serveur est un NanoServeurHttp
+   -
+     type : 180
+     enabled : false
+   -
+     type : 230
+     enabled : false
+ code_parameters :
+  internal_properties : BwAAAAcAAAARaqIs1pWWTrjJkc2sbefp8NGAHSVvdRgpQIePRe9rhkbpERRVEF+Nx8mIqTxrVGdwHX99jtU=
+  original_name : Modele1
+resources :
+ string_res :
+  identifier : 0x13c3b52f0004dd57
+  internal_properties : BwAAAAcAAAAZ++HSz2luvwiNhadWl8v3mh2d0Pq0fCIps02kogrcwVHmCg==
+custom_note :
+ internal_properties : BwAAAAcAAAC68/W0/adbG0nFCRhrE42B5HRnbDzVHaz86sSQyxlBk7I=
+rad :
+ internal_properties : BwAAAAcAAABoAN7PLpwJW3EiA7WVZdCA5EwrCA1rvutcDHooMWKe

@@ -1,0 +1,115 @@
+#To edit and compare internal_properties, use WINDEV integrated tools.
+#Internal properties refer to the properties of controls in windows, reports, etc.
+info :
+ name : RequêteHttp
+ major_version : 27
+ minor_version : 0
+ type : 4
+ description : ""
+ subtype : 0
+class :
+ identifier : 0x13c4443f004cab5b
+ internal_properties : BwAAAAcAAAB2/vstTMCJbS/hlxjFxirSqKvCUuv8YxgpWyl7S3iA
+ code_elements :
+  type_code : 10
+  p_codes :
+   -
+     code : |1+
+      RequêteHttp est une Classe
+      	verbe est chaine ansi // ex : "GET" ou "POST"
+      	uri_brute   est chaîne ansi // ex : "/fr/page1.html?lang=fr" 
+      	uri   est chaîne ansi // ex : "/fr/page1.html" 
+      	protocol   est chaine ansi // ex : "HTTP/1.1"
+      	tab_paramètre_entete est un tableau associatif de chaine ansi // ex: tab_paramètre_entete["User-Agent"] => " Mozilla/5.0"
+      	tab_paramètre_get    est un tableau associatif de chaine unicode  // ex: tab_paramètre_get["lang"] => "fr"
+      fin
+     type : 131072
+  procedures :
+   -
+     name : Constructeur
+     procedure_id : 1424338419534637915
+     type_code : 27
+     code : |1+
+      procédure Constructeur( buffer_brut est chaine ANSI )
+      // exemple ee requete brute
+      //GET /pag1/htm HTTP/1.1
+      //Host: localhost:8081
+      //Connection: keep-alive
+      //Cache-Control: max-age=0
+      
+      // décode la 1er ligne. ex: "GET /Index.html HTTP/1.1"
+      ligne1 est une chaîne = ExtraitChaîne(buffer_brut,1,rc)
+      :verbe  	= ExtraitChaîne(ligne1,1," ")
+      :uri_brute	= ExtraitChaîne(ligne1,2," ")
+      :protocol   = ExtraitChaîne(ligne1,3," ")
+      // décoder l'uri
+      si :verbe="GET" _et_ Position(:uri_brute,"?")>0 ALORS
+      	_decode_uri_brute()
+      sinon
+      	:uri = :uri_brute
+      FIN
+      
+      // décode les ligne suivante
+      tab_parametre_brut est un tableau de chaine ansi
+      ChaîneVersTableau(buffer_brut,tab_parametre_brut,rc)
+      pour i=2 _a_ tab_parametre_brut.Occurrence()
+      	nom est chaine ANSI    = ExtraitChaîne( tab_parametre_brut[i],1,":")
+      	si nom<>"" alors
+      		valeur est chaine ANSI = ExtraitChaîne( tab_parametre_brut[i],2,":")
+      		tab_paramètre_entete[ nom ] = valeur
+      	fin
+      FIN
+     type : 589824
+   -
+     name : Destructeur
+     procedure_id : 1424338419534703451
+     type_code : 28
+     code : |1+
+      procédure Destructeur()
+      
+     type : 655360
+   -
+     name : _decode_uri_brute
+     procedure_id : 1424354615858837635
+     type_code : 12
+     code : |1+
+      procédure _decode_uri_brute() 
+      	
+      :uri = ExtraitChaîne(:uri_brute,1,"?")
+      tous_params est une chaîne ansi =  ExtraitChaîne(:uri_brute,2,"?")
+      POUR TOUTE CHAÎNE param_brut DE tous_params SÉPARÉE PAR "&"
+      	nom   est chaine UNICODE   = URLDécode( ExtraitChaîne(param_brut,1,"=") , encodeURLVersUnicode)
+      	valeur est chaine  UNICODE = URLDécode( ExtraitChaîne(param_brut,2,"=") , encodeURLVersUnicode)
+      	tab_paramètre_get[ nom ] = valeur
+      FIN
+      
+      
+     type : 458752
+   -
+     name : get_uri
+     procedure_id : 1424341267098094469
+     type_code : 12
+     code : |1+
+      procédure get_uri() : chaine
+      
+      renvoyer :uri
+     type : 458752
+   -
+     name : get_user_agent
+     procedure_id : 1424341438896826043
+     type_code : 12
+     code : |1-
+      procédure get_user_agent() : chaine
+      renvoyer tab_paramètre_entete["User-Agent"]
+     type : 458752
+  procedure_templates : []
+  property_templates : []
+ code_parameters :
+  internal_properties : BwAAAAcAAAA6ih3UbgNXHwTtiPSFUEj+2fi/m7v4QV2rqidAupM=
+  original_name : Classe1
+resources :
+ string_res :
+  identifier : 0x13c444300049743e
+  internal_properties : BwAAAAcAAAAnMYFQ1bL/vz9ehh7L22SNNSlIzGTOI8h5F/WtgDNP
+custom_note :
+ internal_properties : BwAAAAcAAABtB9HWVzrXO2+4NDRVK0vmzaNKrCKqH1DBX30lMmGZ

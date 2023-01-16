@@ -1,0 +1,219 @@
+#To edit and compare internal_properties, use WINDEV integrated tools.
+#Internal properties refer to the properties of controls in windows, reports, etc.
+info :
+ name : NanoServeurHttp
+ major_version : 27
+ minor_version : 0
+ type : 4
+ description : ""
+ subtype : 0
+class :
+ identifier : 0x13c3c32c00178112
+ internal_properties : BwAAAAcAAAB2/vstTMCJbS/hlxjFxirSqKvCUuv8YxgpWyl7S3iA
+ code_elements :
+  type_code : 10
+  p_codes :
+   -
+     code : |1-
+      NanoServeurHttp est une Classe
+      PUBLIQUE
+      	// callback
+      	
+      	tab_eve_uri est un tableau associatif de procédure
+      	// appelée si aucune uri ne correpond 
+      	eve_requete_non_traitée est une procédure
+      	
+      privé
+      	// n° de port pour accéder au serveur
+      	numéro_de__port	est entier	= 8080
+      	socket_attente_connexion est chaine	
+      	est_démarré est un booléen
+      	thread_attente_connexion est chaine
+      	
+      	stop_thread est un booléen
+      
+      fin
+      
+      CONSTANT sCONTENT_LENGTH = "Content-Length:"
+     type : 131072
+  procedures :
+   -
+     name : Constructeur
+     procedure_id : 1424196500926791954
+     type_code : 27
+     code : |1+
+      procédure Constructeur()
+      
+     type : 589824
+   -
+     name : Destructeur
+     procedure_id : 1424196500926857490
+     type_code : 28
+     code : |1+
+      procédure Destructeur()
+      
+      si est_démarré alors
+      	// arréter le serveur
+      	SocketFerme(:socket_attente_connexion)
+      fin
+      
+      
+     type : 655360
+   -
+     name : démarreServeur
+     procedure_id : 1424196500926923026
+     type_code : 12
+     code : |1+
+      
+      // lancer le serveur sur un port
+      // acces par
+      // http://localhost:8080/
+      PROCÉDURE PUBLIQUE démarreServeur( num_port est entier = 8080 ) : (booléen, chaîne)
+      
+      // si déja lancé
+      SI :est_démarré ALORS
+      	RENVOYER (faux,"Serveur déjà démarré")
+      FIN
+      // créer un nom unique
+      :socket_attente_connexion	= "socket_" + DonneGUID(guidBrut)
+      :thread_attente_connexion	= "thread_" + :socket_attente_connexion
+      // création de la coket d'atten de connection
+      SI SocketCrée(:socket_attente_connexion, num_port) = Faux ALORS
+      	// echec
+      	RENVOYER (Faux, erreurinfo())
+      FIN
+      
+      // lancement du thread d'attente de connexions client
+      ThreadExécute(thread_attente_connexion, threadSécurisé, _attente_connexion)
+      PROCÉDURE interne _attente_connexion
+      	// boucle sans fin en attente de connexions
+      	BOUCLE
+      		SI SocketAttendConnexion(:socket_attente_connexion)  ALORS
+      			// crée un canal de communication
+      			canal_http est chaine = SocketAccepte(:socket_attente_connexion)
+      			// traite la requete
+      			_traite_une_requete_http( canal_http  )
+      			SocketFerme(canal_http)
+      		fin
+      		si stop_thread ALORS
+      			retour
+      		FIN
+      	FIN
+      fin
+      
+      // succès
+      renvoyer (vrai,"")
+     type : 458752
+   -
+     name : _traite_une_requete_http
+     procedure_id : 1424196500926988562
+     type_code : 12
+     code : |1+
+      // gestion d'une reuête htpp vi la socket de communication <canal_http>
+      procédure privée _traite_une_requete_http( canal_http )
+      
+      // gestion manuelle du calcul de la taille du message
+      SocketChangeModeTransmission(canal_http,SocketMarqueurFin)
+      
+      // lecture de la requête
+      buffer_req_http est un chaine ansi = _lit_requete_brute(canal_http,30s)
+      SI buffer_req_http=""  ALORS
+      	// Erreur
+      	retour
+      FIN
+      
+      // décoder la requete
+      requete  est RequêteHttp( buffer_req_http )
+      // réponse
+      réponse est ReponseHttp(canal_http)
+      
+      
+      // appel callback
+      uri_demandée est chaine = requete.get_uri()
+      si tab_eve_uri[uri_demandée].existe ALORS
+      	// appel code pour cette uri
+      	proc est une procédure = tab_eve_uri[uri_demandée]
+      	proc(requete, réponse)
+      sinon si eve_requete_non_traitée<>null ALORS
+      	// uri non traitée
+      	eve_requete_non_traitée(requete, réponse)
+      FIN
+      
+      // si aucune réponse
+      si pas réponse.reponse_renvoyée alors
+      	// erreur 404
+      	réponse.envoie_erreur_404()
+      FIN
+     type : 458752
+   -
+     name : _lit_requete_brute
+     procedure_id : 1424197819483172657
+     type_code : 12
+     code : |1+
+      procédure _lit_requete_brute(canal_http, duree_max est durée) : buffer
+      
+      chrono_lecture est un Chrono
+      chrono_lecture.Début()
+      
+      buffer_req_http est un Buffer 
+      // lire tant qu'on a pars la marque de fin du header
+      marque_fin_header est chaine = RC+rc
+      tantque position(buffer_req_http,marque_fin_header)<=0
+      	buffer_req_http +=  SocketLit(canal_http,Faux,0)
+      	si chrono_lecture > duree_max ALORS
+      		renvoyer "" // timeout
+      	FIN
+      FIN
+      trace(chrono_lecture)
+      
+      // on recherche la taille dans le header
+      procédure interne _lit_taille()
+      	// ex : "Content-Length: 88"
+      	pos_taille est entier = position(buffer_req_http,sCONTENT_LENGTH)
+      	SI pos_taille <= 0 ALORS
+      		RENVOYER 0
+      	FIN
+      	// extrait la taille
+      	pos_taille += Taille(sCONTENT_LENGTH)
+      	TANTQUE buffer_req_http[pos_taille] = " " 
+      		pos_taille++ // sauter les espaces
+      	FIN
+      	taille_ est entier = milieu( buffer_req_http, pos_taille)
+      	SI taille_="" ALORS
+      		RENVOYER  0
+      	FIN
+      	renvoyer taille_
+      fin
+      taille_message_body est une chaîne = _lit_taille()
+      // si il n'y en a pas
+      si taille_message_body = 0 ALORS
+      	// terminé
+      	renvoyer buffer_req_http
+      FIN
+      
+      taille_message_totale est chaine = marque_fin_header+2*taille(rc)+taille_message_body
+      
+      // lire la fin du message
+      TANTQUE taille(buffer_req_http)<taille_message_totale
+      	buffer_req_http +=  SocketLit(canal_http,Faux,0)
+      	SI chrono_lecture > duree_max ALORS
+      		RENVOYER "" // timeout
+      	FIN	
+      FIN
+      
+      // OK
+      renvoyer buffer_req_http
+      
+      
+     type : 458752
+  procedure_templates : []
+  property_templates : []
+ code_parameters :
+  internal_properties : BwAAAAcAAAA6ih3UbgNXHwTtiPSFUEj+2fi/m7v4QV2rqidAupM=
+  original_name : Classe1
+resources :
+ string_res :
+  identifier : 0x13c3bdb0003914d2
+  internal_properties : BwAAAAcAAAAnMYFQ1bL/vz9ehh7L22SNNSlIzGTOI8h5F/WtgDNP
+custom_note :
+ internal_properties : BwAAAAcAAABtB9HWVzrXO2+4NDRVK0vmzaNKrCKqH1DBX30lMmGZ
