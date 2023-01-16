@@ -17,6 +17,8 @@ class :
      code : |1-
       NanoServeurHttp est une Classe
       PUBLIQUE
+      	// appelée pour chaque requet
+      	eve_avant_chaque_requete est une procédure
       	// appelée si aucune uri ne correpond 
       	eve_requete_non_traitée est une procédure
       	
@@ -152,9 +154,17 @@ class :
       // réponse
       réponse est ReponseHttp(canal_http)
       
-      
-      // appel callback
       uri_demandée est chaine = requete.get_uri()
+      
+      // pré-traitement
+      si eve_avant_chaque_requete<>null ALORS
+      	eve_avant_chaque_requete(requete, réponse)	
+      	SI  réponse.reponse_renvoyée ALORS
+      		retour
+      	FIN
+      FIN
+      
+      // si on a veut traiter par code cette uri
       si tab_eve_uri[uri_demandée].existe ALORS
       	// appel code pour cette uri
       	proc est une procédure = tab_eve_uri[uri_demandée]

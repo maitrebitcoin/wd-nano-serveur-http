@@ -12,10 +12,10 @@ window :
  identifier : 0x23c3b534014df0cf
  internal_properties : BwAAAAcAAADQidDHvk4qxx4fqGnm23OytisH8rrZ8HDWmuCHB/B4SGUH++gZRy+YiUIwh1AfPkQJEANh299RyO/7ZpK7nDAdQvUhbD9Eg81rvutpZw4RJXBfX4qBkoJ1ZQZhT3XllBy9X53fVnA0D8w+4AKxt9wxu8NZTDd+WEI01DkdMfE7cE7jkSLy+iAmOv0Gdt0d5RcixwOBXzxAh8fMIxhJQq7MsZU6/3v/Dd1KBtxG6UYszEepB8O6Mr6cFhQZKnOqW5ki9KFlbbKPMPoWegXdlifzhpFAqtk4riS4QNZGLYnMmxP013mNuanLZ8OgSKkxGP7NDcJNvnVOFfU2VagtxwvKuM2L/nmVJrMINn6Okd5OAA5bJWOzPM9enQQTC+meTt7u1fIme0lJypm4t/Zh5SKgCDD6uwqZkMQ+CiagGGdQxOPHb7gCLf5IThMZB4bRBDPLdk1HVBb8BPV4Ntra9Iddhcnfu+IMgDNoRlhqNwBpLmCWbA0ZBl6em9jsiXBbS7spy6dnWraUi32gZH09aACatFmXXSwZFGfsr8O/mo8Ckq7SeqiFQAPWpK/r1M6SEbIGEjxdJM/fCmGAhBab9ow69I0Xfzr9QR7jyn96Cfq/yJhGYpPpumiWLJ2HLWh9wiZw3O3wedpZqhjDTw==
  properties :
-  width : 581
-  height : 189
-  widthClient : 579
-  heightClient : 157
+  width : 598
+  height : 475
+  widthClient : 596
+  heightClient : 443
  controls :
   -
     name : BTN_RUM
@@ -34,12 +34,14 @@ window :
         code : |1-
          
          
+         mon_serveur.eve_avant_chaque_requete =  ( req , réponse ) => {	
+         	Trace(req.get_uri() + " lue en " + req.duree_lecture )
+         }
          mon_serveur.eve_requete_non_traitée =  ( req , réponse ) => {	
-         	trace(req.get_uri())
          	réponse.envoie_erreur_404()
          }
          mon_serveur.ajoute_traitement_uri("/",  ( req , réponse ) => {	
-         	Trace(req.get_uri())
+         
          	réponse.envoie_chaine("<html><body>voici la page <b>racine</b> du site <hr>en construction... </body></html>") 
          })
          mon_serveur.ajoute_traitement_uri("/test", ( req , réponse ) => {	
@@ -66,6 +68,8 @@ window :
          LIB_STATUS = "En cours, port " + num_port
          LIB_STATUS..Couleur = VertFoncé
          BTN_RUM..Grisé = vrai
+         
+         HTM_SansNom1 = "localhost:8081/Site/page1.html"
         type : 18
       -
         type : 161
@@ -77,7 +81,7 @@ window :
     properties :
      x : 173
      y : 26
-     width : 368
+     width : 401
      height : 71
     type : 3
     code_elements :
@@ -86,12 +90,12 @@ window :
   -
     name : BTN_Lancer_un_naivgateur
     identifier : 0x23c3c4ac013a5d70
-    internal_properties : BwAAAAcAAADbEnrXiUfr7mr0x3qROnguXbw/XcpCKIhjIP4S4pNFON+wb7R1tO0RW3VlE8bCcXKlernsekWDdL3AF9HcZxwp/1vgSA4YvLB5sud+sR8FHzcamQPy8FKDgsd8w6UqCcWK1PcrPRQVDHSY+abA8zkVsTsxk3Jm8kLT+IlmfycNO0wbQB6q2B8LkfICKBFW8pA74vwZvuo4VbZyYn8m4Y7HbJ1DdVpETepyJnxymTCai1aLRI4VW5S4zNU8/sjqtvqhQUFnNAqmfBppko2XVORpP2qTyqFZqydLw4K/YG+MUoJnUvvU4nTaRKSe8PicXYJj9dap9m5XHTWYYIelHnJcgNsR8j+3qGOAKu+Xl/+8F4zcu7N97yAGweBivGxs5VfriWlnxD3Ub5Yp3KOTeeSJyrF3uVkOTBJDDbIEo6dgctFpHiAd9iUReanothUovwvGO5tA6UvwWbIEIIhGxLPkWLIVr8LXqy6fKxpbdrU19IwXqN8dAwVSN6BTAg3uk17oZtLrdOZJMeefGVu5WmL7h1cxzkeQ95NLI4eB822ACeN4tOVYYuiYy31bH6f41OpjwuI+DzlTK0rratDQlOeW7vDSSr57ZYk4piM6hmeFnMYTtkSPur3VNBg6Pc0jE/pQij5W5mTwR3+D74s+Y1piROigiYQNN/U4VgPAtlTTwdZD474EA8B1zAEMeW4UDElx/vZru5L8QZ667UhGGv1CZH3COYn4xCnTuz/0kLFX/vD0cwOSuZ7Jq52f9W5sjz5vvOwbEXHzrT5Q3vueqUL/W8+9crNvW4O6BKHSYpv6LxeVv5p3Cn/Tb9NrzMMPQglvzCHTIiv2Gxkt8lkXHZMXjvQ4
+    internal_properties : BwAAAAcAAAACxZtJdKPyuMYQog6cSO20wrgYT3tw4aTZwGM+Thdu8mhLTAkKUOp1iGPBIZwxs5hybOhDQVUpSTCcI+Tdl+6EhWCBzyZj7WAkSrzv+6pcu7GYllTn4Bul4ZRhty/JkVlzzwNs1PZ6FD5YqUay/CIE7y57y21Ib6qi7237LsvaGqfxQv4qVetgq4+ksQXnpMseEb4yH9l0WnhqFqBkW7m/mQlU88n9rY2mII2YlEn04nCZVz8BhNF+d+tPsZsWqq/7I9rO8+f+DZA2RdvY41n9pgdEhB2bC7n9q6sSbUdI8M52LMhkoKdOn+HPVxuQyP5x3sIMvd9WHShZtZ1XDKIajWCe8dE/135e7ZG1s/bFdhdp2ajBxhpzKQzfvAm3+Y3X/cjdsPZwe1Ut+dphDLBsbVCn9JUxrA3H8yp/UKPmmuUoHqakbo6oeKG2Mqz23m+BiJ2ees21XxndwxYrvAkbkbUa3T3YpaKPvh9KLxLg+OZy68rOuDdhihkEp6jan2U3Odg9xfHCznLtIk03lP3/IMtIOAGTAnxb4x45M6ChvTVwI2Ylomj6DPHABUtiwX6qHB2euo8kSR2Sb3E8QqhpY52eaOs5c/69FnWgS6KSPz4VePYQ7IfQRlJXiK9Gt5IylurMt8hpmoEPvzOkR1r867dN+tVXVke+xVCB51htvIlYiMGgrFlxVw7rsuyJFgAXZ0W6hx3qOTlQli/IAkI5J80SsQUSDa+juKZZHDt8Pr9YFAdym29CeOJSNrkw/NcRuwAH3mnhoY1xwyDEWQ4viNvohVGXyWa0idYRH6iWn3EC3QzccWXOlpfZ/NfWHSZj/2lvUgTKE8pwrglqPW5iPZGyvKIaJqVUbu1/Lr59GT9a6xOWub2sbJhA6jof/zfm
     properties :
-     x : 26
-     y : 109
+     x : 448
+     y : 111
      width : 126
-     height : 24
+     height : 22
     type : 4
     code_elements :
      type_code : 4
@@ -103,6 +107,44 @@ window :
       -
         type : 161
         enabled : false
+  -
+    name : HTM_SansNom1
+    identifier : 0x23c4fd53075da505
+    internal_properties : BwAAAAcAAADmy9+ntfE61v+IUPuNgkZGfb31LIKFrXyKzsoQ3h7wGABAJv5AhrqucQttcTaoUOdnkRzpuNJedB67ABhooNcMpBdKDJ7idDpIzdoc1phKwyjq1b/98XPCHfxGJb2qrisYo1uvytkGtEQhlwpluwenzxVPotXqrl0sQC5Hh3HVvtjgr6Tt41mC/dvu0DOtfV41YxU3o2N96gOihzXX76A/5sPkRrV/TsLRnfQhGuRZQQ+YSNrQRX71qixDj6ubEps+yTjvyRip/Lv022xABzEn+DQL1HEyWeEvEcxdAiyZIn3vBy4+/I+P/X5tu6eZsImnGe6MOK2HAZWIpJOV6AwEXf8VI0HPgbMxnALh8kqa0ukh1Fepq75rZFKFKAkGCs4TdcStt6NUbDg7SwtpBOxLHHynCBLO841Z/gexNUDlubAxEvPER1E6KUDXuo2arNwCjgGUUXo=
+    properties :
+     x : 26
+     y : 139
+     width : 552
+     height : 298
+    type : 23
+    code_elements :
+     type_code : 36
+     p_codes :
+      -
+        code : |1+
+         PROCÉDURE ClicLien(sUrl est chaine, bDansNouvelleFenetre est un booléen, sDestination est une chaine)
+         
+         RENVOYER Vrai
+        type : 266
+      -
+        code : |1+
+         PROCEDURE ChangePage( sUrl est chaine, sDestination est une chaine )
+         
+         RENVOYER Vrai
+        type : 290
+      -
+        code : |1+
+         PROCEDURE ChargementRessources( sUrl est chaine, nType est entier )
+         // nType donne le type de ressource à télécharger
+         // exemple : typehtmlResImage, typehtmlResScript, typehtmlResCss, typehtmlResXMLHttpRequest, typehtmlAutre
+         // ATTENTION : ce traitement est appelé depuis un thread secondaire
+         
+         RENVOYER Vrai
+        type : 289
+      -
+        code : |1+
+         PROCEDURE ClicDroitLien( sUrl est chaine )
+        type : 291
  menu :
   name : _Menu
   identifier : 0x292573e513b5f221
