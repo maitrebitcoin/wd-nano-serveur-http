@@ -54,11 +54,7 @@ class :
      code : |1+
       procédure Destructeur()
       
-      si est_démarré alors
-      	// arréter le serveur
-      	SocketFerme(:socket_attente_connexion)
-      fin
-      
+      stop_serveur()
      type : 655360
    -
      name : ajoute_traitement_uri
@@ -106,11 +102,12 @@ class :
       FIN
       
       // lancement du thread d'attente de connexions client
+      :stop_thread = Faux
       ThreadExécute(thread_attente_connexion, threadSécurisé, _attente_connexion)
       PROCÉDURE interne _attente_connexion
       	// boucle sans fin en attente de connexions
       	BOUCLE
-      		SI SocketAttendConnexion(:socket_attente_connexion)  ALORS
+      		SI SocketAttendConnexion(:socket_attente_connexion,10ms)  ALORS
       			// crée un canal de communication
       			canal_http est chaine = SocketAccepte(:socket_attente_connexion)
       			// traite la requete
@@ -118,13 +115,37 @@ class :
       			SocketFerme(canal_http)
       		fin
       		si stop_thread ALORS
+      			SocketFerme(:socket_attente_connexion)
       			retour
       		FIN
       	FIN
       fin
       
       // succès
+      :est_démarré = vrai
       renvoyer (vrai,"")
+     type : 458752
+   -
+     name : stop_serveur
+     procedure_id : 1424903963666538508
+     type_code : 12
+     code : |1+
+      procédure stop_serveur()
+      
+      // si pas lancé on ne fait rien
+      SI pas :est_démarré ALORS
+      	retour
+      FIN
+      
+      // demande au thread qui fait de SocketAttendConnexion() de se terminer
+      :stop_thread = vrai
+      TANTQUE ThreadEtat(thread_attente_connexion)=threadEncours
+      	Temporisation(10,tempoRien)
+      FIN
+      :stop_thread = Faux
+      
+      :socket_attente_connexion=""
+      :est_démarré= Faux
      type : 458752
    -
      name : _traite_une_requete_http
