@@ -14,7 +14,7 @@ class :
   type_code : 10
   p_codes :
    -
-     code : |1-
+     code : |1+
       NanoServeurHttp est une Classe
       PUBLIQUE
       	// appelée pour chaque requet
@@ -37,9 +37,6 @@ class :
       	stop_thread est un booléen
       
       fin
-      
-      CONSTANTE MARQUE_FIN_HEADER  = RC+RC
-      CONSTANT sCONTENT_LENGTH = "Content-Length:"
      type : 131072
   procedures :
    -
@@ -215,10 +212,12 @@ class :
       buffer_req_http est un Buffer 
       
       // lire l'entête http jusqu'au 2 RC
-      SocketChangeModeTransmission(canal_http,SocketMarqueurFin,marque_fin_header)
-      buffer_req_http +=  SocketLit(canal_http,faux,duree_max)
-      si buffer_req_http="" ALORS
-      	renvoyer ("", chrono_temp_lecture_requete.Valeur )
+      SocketChangeModeTransmission(canal_http,SocketSansMarqueurFin)
+      TANTQUE Position(buffer_req_http,marque_fin_header)<=0
+      	buffer_req_http +=  SocketLit(canal_http,Faux,0)
+      	SI chrono_temp_lecture_requete > duree_max ALORS
+      		RENVOYER ("", chrono_temp_lecture_requete.Valeur) // timeout
+      	FIN	
       FIN
       
       // recherche la taille totale dans le header
@@ -246,10 +245,13 @@ class :
       	renvoyer (buffer_req_http,chrono_temp_lecture_requete.Valeur)
       FIN
       
+      // on a une partie apres l'entête
+      // cas de POST par exemple
+      
+      // calcul taille totale attendue
       taille_message_totale est chaine = marque_fin_header+2*taille(rc)+taille_message_body
       
       // lire la fin du message
-      SocketChangeModeTransmission(canal_http,SocketMarqueurFin)
       TANTQUE taille(buffer_req_http)<taille_message_totale
       	buffer_req_http +=  SocketLit(canal_http,Faux,0)
       	SI chrono_temp_lecture_requete > duree_max ALORS

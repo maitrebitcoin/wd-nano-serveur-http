@@ -16,13 +16,17 @@ class :
    -
      code : |1+
       RequêteHttp est une Classe
+      	buffer_initial est une chaîne ANSI // chaine brute telle que recue du réseau
       	verbe est chaine ansi // ex : "GET" ou "POST"
       	uri_brute   est chaîne ansi // ex : "/fr/page1.html?lang=fr" 
       	uri   est chaîne ansi // ex : "/fr/page1.html" 
       	protocol   est chaine ansi // ex : "HTTP/1.1"
       	tab_paramètre_entete est un tableau associatif de chaine ansi // ex: tab_paramètre_entete["User-Agent"] => " Mozilla/5.0"
-      	tab_paramètre_get    est un tableau associatif de chaine unicode  // ex: tab_paramètre_get["lang"] => "fr"
-      	duree_lecture est durée // temps mis pour la lire depuis le réseau
+      	// paramètre reçus en get ou post
+      	tab_paramètre	    est un tableau associatif de chaine unicode  // ex: tab_paramètre_get["lang"] => "fr"
+      	
+      	// temps mis pour la lire la requête depuis le réseau
+      	duree_lecture est durée 
       fin
      type : 131072
   procedures :
@@ -38,6 +42,8 @@ class :
       //Connection: keep-alive
       //Cache-Control: max-age=0
       
+      :buffer_initial = buffer_brut
+      
       // décode la 1er ligne. ex: "GET /Index.html HTTP/1.1"
       ligne1 est une chaîne = ExtraitChaîne(buffer_brut,1,rc)
       :verbe  	= ExtraitChaîne(ligne1,1," ")
@@ -48,6 +54,9 @@ class :
       	_decode_uri_brute()
       sinon
       	:uri = :uri_brute
+      	SI :verbe="POST" alors
+      		_decode_parametre_post()
+      	FIN
       FIN
       
       // décode les ligne suivante
@@ -73,18 +82,39 @@ class :
      name : _decode_uri_brute
      procedure_id : 1424354615858837635
      type_code : 12
-     code : |1+
+     code : |1-
       procédure _decode_uri_brute() 
       	
       :uri = ExtraitChaîne(:uri_brute,1,"?")
       tous_params est une chaîne ansi =  ExtraitChaîne(:uri_brute,2,"?")
-      POUR TOUTE CHAÎNE param_brut DE tous_params SÉPARÉE PAR "&"
+      // décode paramètres "GET"
+      _decode_paramètre_post_ou_get(tous_params )
+     type : 458752
+   -
+     name : _decode_paramètre_post_ou_get
+     procedure_id : 1424902151190179146
+     type_code : 12
+     code : |1-
+      // décodage des paramètres post ou get
+      procédure _decode_paramètre_post_ou_get( bloc_parametres est chaine ansi  )
+      
+      param_brut est chaine ANSI
+      POUR TOUTE CHAÎNE param_brut DE bloc_parametres SÉPARÉE PAR "&"
       	nom   est chaine UNICODE   = URLDécode( ExtraitChaîne(param_brut,1,"=") , encodeURLVersUnicode)
       	valeur est chaine  UNICODE = URLDécode( ExtraitChaîne(param_brut,2,"=") , encodeURLVersUnicode)
-      	tab_paramètre_get[ nom ] = valeur
+      	tab_paramètre[ nom ] = valeur
       FIN
+     type : 458752
+   -
+     name : _decode_parametre_post
+     procedure_id : 1424898758165094625
+     type_code : 12
+     code : |1+
+      procédure _decode_parametre_post()
       
-      
+      // récup du bloc de donnée dans la quetet http
+      tous_params est une chaîne ansi = ChaineApres(:buffer_initial,MARQUE_FIN_HEADER)
+      _decode_paramètre_post_ou_get(tous_params)
      type : 458752
    -
      name : get_uri

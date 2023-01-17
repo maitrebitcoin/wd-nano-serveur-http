@@ -58,6 +58,12 @@ project :
      internal_properties : BwAAAAcAAAAqIBJ2tfK65e2kCmI54KJXWj2ZWXn2TmlPjFGZPabuMpZkIkmAhgz+znVvSckH8+UvNw==
      physical_name : .\RépertoireVirtuel.wdc
      type : 4
+   -
+     name : util_http_serveur
+     identifier : 0x43c643a30a14478a
+     internal_properties : BwAAAAcAAACRbcnd6pefUB5D7ECccTPMC6jWjjQzhEevZFEqqGurdY9BS4yZsYKFO+LcJOzknAz0fA==
+     physical_name : .\util_http_serveur.wdg
+     type : 7
   other_elements : []
   net_assemblies : []
   uwp_api : []

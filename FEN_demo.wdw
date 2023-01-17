@@ -47,7 +47,7 @@ window :
          mon_serveur.ajoute_traitement_uri("/test", ( req , réponse ) => {	
          Trace(req.get_uri())
          aide_fr est chaine = "paramètres recus :<rc>" 
-         pour tous valeur,clé de req.tab_paramètre_get
+         pour tous valeur,clé de req.tab_paramètre
          	aide_fr += rc
          	aide_fr += "<hr>"
          	aide_fr += "<b>"+clé+"</b> = "
