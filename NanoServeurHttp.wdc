@@ -78,7 +78,7 @@ class :
       tab_repertoire_virtuel.Ajoute(repertoire_virtuel)
      type : 458752
    -
-     name : démarreServeur
+     name : démarre_serveur
      procedure_id : 1424196500926923026
      type_code : 12
      code : |1+
@@ -86,7 +86,7 @@ class :
       // lancer le serveur sur un port
       // acces par
       // http://localhost:8080/
-      PROCÉDURE PUBLIQUE démarreServeur( num_port est entier = 8080 ) : (booléen, chaîne)
+      PROCÉDURE PUBLIQUE démarre_serveur( num_port est entier = 8080 ) : (booléen, chaîne)
       
       // si déja lancé
       SI :est_démarré ALORS

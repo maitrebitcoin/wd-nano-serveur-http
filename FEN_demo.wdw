@@ -58,7 +58,7 @@ window :
          mon_serveur.ajoute_répertoire_virtuel("/Site", fRepDonnées() + "\Site")
          
          num_port est un entier = 8081
-         soit (bok, err ) = mon_serveur.démarreServeur(num_port)
+         soit (bok, err ) = mon_serveur.démarre_Serveur(num_port)
          si pas bok ALORS
          	trace(err )
          	retour
