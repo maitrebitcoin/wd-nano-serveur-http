@@ -46,9 +46,9 @@ class :
       message_len		est entier		= Taille(chaine_reponse)
       header_http		est chaîne ANSI	= "HTTP/1.0 200" + RC + "Content-Length: [%message_len%]" + RC+ "Content-Type: " + type_mime
       
-      SocketEcrit(canal_http,header_http+RC+RC+chaine_reponse)
-      
-      reponse_renvoyée = Vrai
+      SocketEcrit(:canal_http,header_http+RC+RC+chaine_reponse)
+      SocketFerme(:canal_http)
+      :reponse_renvoyée = Vrai
      type : 458752
    -
      name : envoie_fichier
@@ -84,6 +84,7 @@ class :
       // renvoie la fameuse erreur 404 : page non trouvée
       PROCÉDURE envoie_erreur_404()
       
+      
       page_html est chaine ANSI = [
       <!DOCTYPE html>
       <head>
@@ -91,7 +92,7 @@ class :
       </head>
       <style>
       body { 
-      	background-color: #80908A;
+      	background-color: #A0A0BA;
       }
       h1 {
       	color:red;
@@ -99,10 +100,13 @@ class :
       }
       </style>
       <body>
-        <h1> &#129320; Oups... </h1>
+        <h1> &#128532; </h1>
         <hr>
         <p>
-        <h2>404 : page not found</h2>
+        <h2>404 : page not found </h2>
+        <p>
+        <p>
+        <hr>
       </body>
       </html>
       ]

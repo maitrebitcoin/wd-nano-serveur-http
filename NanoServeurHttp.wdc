@@ -22,6 +22,8 @@ class :
       	// appelée si aucune uri ne correpond 
       	eve_requete_non_traitée est une procédure
       	
+      	duree_max_lecture_requete est une durée
+      		
       privé
       	// n° de port pour accéder au serveur
       	numéro_de__port	est entier	= 8080
@@ -45,7 +47,7 @@ class :
      type_code : 27
      code : |1+
       procédure Constructeur()
-      
+      :duree_max_lecture_requete = 3s
      type : 589824
    -
      name : Destructeur
@@ -100,6 +102,7 @@ class :
       	// echec
       	RENVOYER (Faux, erreurinfo())
       FIN
+      :numéro_de__port = num_port
       
       // lancement du thread d'attente de connexions client
       :stop_thread = Faux
@@ -112,7 +115,7 @@ class :
       			canal_http est chaine = SocketAccepte(:socket_attente_connexion)
       			// traite la requete
       			_traite_une_requete_http( canal_http  )
-      			SocketFerme(canal_http)
+      			
       		fin
       		si stop_thread ALORS
       			SocketFerme(:socket_attente_connexion)
@@ -156,11 +159,10 @@ class :
       procédure privée _traite_une_requete_http( canal_http )
       
       
-      
       // lecture de la requête
       buffer_req_http est un chaine ansi 
       duree_lecture est une durée
-      (buffer_req_http,duree_lecture) = _lit_requete_brute(canal_http,30s)
+      (buffer_req_http,duree_lecture) = _lit_requete_brute(canal_http, :duree_max_lecture_requete)
       SI buffer_req_http=""  ALORS
       	// Erreur
       	retour
@@ -283,7 +285,23 @@ class :
       // OK
       renvoyer (buffer_req_http, chrono_temp_lecture_requete.Valeur)
       
+     type : 458752
+   -
+     name : url_racine
+     procedure_id : 1425246345580067758
+     type_code : 12
+     code : |1+
+      // renvoie l'url racine pour se connecter au site
+      // ex ! "http://132.51.15.42:8080"
+      procédure url_racine() : chaine
       
+      
+      url est chaine = "http://"
+      url += NetAdresseIP()
+      url += ":"
+      url += ""+numéro_de__port
+      url += "/"
+      renvoyer url
      type : 458752
   procedure_templates : []
   property_templates : []
