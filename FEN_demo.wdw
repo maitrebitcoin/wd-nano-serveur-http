@@ -73,7 +73,7 @@ window :
          BTN_RUN..Grisé = vrai
          BTN_STOP..grisé= faux
          MaFenêtre..plan=1
-         SAI_Url =  mon_serveur.url_racine() + "Site/page1.html"
+         SAI_Url =  mon_serveur.url_racine( NanoServeurHttp.ipv4 ) + "Site/page1.html"
          HTM_SansNom1 = SAI_Url
         type : 18
       -
@@ -245,7 +245,9 @@ window :
          si MaFenêtre..Plan <> 2 ALORS
          	
          //	QR_CODE = SAI_Url
-         	QR_CODE = mon_serveur.url_racine()
+          	addresse est chaine = mon_serveur.url_racine( NanoServeurHttp.IPv6 )
+         	LIB_URL_QR = addresse
+         	QR_CODE    = addresse
          	MaFenêtre..Plan = 2
          	MoiMême..Libellé = "Masquer le QR code"
          	
@@ -264,12 +266,25 @@ window :
     internal_properties : BwAAAAcAAABdUnotOrpuR5l92nGWIyzsoPVvRjN8IZ68Wpz0XA8npr7i8i4qn1hY/PqaEAtmS8UTWyagmUpVx5Za0Z949kkW/zwsRNGCcOKqojb7pBiAi+wLEWbqUwIeCRJA7TFj5LTl3AMKCc3g4fRkYBf5ii1Bxi6lcIchHNm/Y/hlHngPIBAMgLk2+/m1LLMYvJ+9vyws31z3bbQ2URcTiesboyq97n2T0icfmncCvKUthwmgZUol+o2r2SEL/YvQo8Rx6QKgKU3SSpNTzXJKm4LaJkjuGB8Mk1j/vvyZsb/KLNQDcm0BhBGIwPE1rLalJCC1QgwLX73AwVG7QimbB3HvJSjAsTh4SNQ2/wijBLMFsQSqR+cxdWv82CHzWgz1X1piw7j9y2MSS8z6kqfnDRklmlH2RlaYd5jO4gSTjnAeb7XgCTUpw4Ady0rgeBd5O5pFOgR1eLh97kj/8rjfyxvqa1jBvkSP8LNro13xi2eC2S/F61hhHBEmyi/S8kMNZwxBDu2sf71qorpThkI8zhoKoNKxLBbEO2CCMtbl1lko4gdIzw==
     properties :
      x : 165
-     y : 112
+     y : 131
      width : 393
-     height : 358
+     height : 335
     type : 26
     code_elements :
      type_code : 58
+     p_codes : []
+  -
+    name : LIB_URL_QR
+    identifier : 0x23c9b8dd05cf1f6d
+    internal_properties : BwAAAAcAAAAYWcbwPu9PRDQJ+9/VZYasr6GI96cT5q5IXgz2Ap5BUOghaoPhBGfGDAyHUYquGiohbD5dMa2tSzbXboTY882WMw6LUv5ssmI/KN9bUHU6QGcYK6/ccl4yEgWSr7gBGxpe3SCQdA7Q/cNvllgHvU0NGv9JHVytWMtxT7stSe98krguKrs/F46mjYQNiOADszTw25L8BFbHT4dYY3HuCwoQjS2gCImCEt4DoKRzmqyfFlbMNWk/jf5OsuUJRwH98q1MsA7g5jZ3BZdXUeXxBKvCoMp38eOT/sEeZZ9HWbvkauNKLncK32LPD+GHV7Cnxac0FTDb2GNbPjcUc9E0UiCoWUedOGtDslIFYK4mLV+T6pds1ltT7LkUODzHGSXewd3CQioCKgtIVSqjLo4z8xLqwZJ2TquvblyUKW3vwcBS7Xvv5ko5UTFJGAkuZUs+6At6hbLfJso40E3lnaJ+5pWWv6+/tbaTiSraPGQgPqI39A==
+    properties :
+     x : 21
+     y : 108
+     width : 662
+     height : 23
+    type : 3
+    code_elements :
+     type_code : 2
      p_codes : []
  menu :
   name : _Menu

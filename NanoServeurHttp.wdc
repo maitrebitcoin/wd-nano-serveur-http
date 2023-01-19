@@ -14,7 +14,7 @@ class :
   type_code : 10
   p_codes :
    -
-     code : |1+
+     code : |1-
       NanoServeurHttp est une Classe
       PUBLIQUE
       	// appelée pour chaque requet
@@ -40,6 +40,12 @@ class :
       	
       	stop_thread est un booléen
       
+      fin
+      
+      OPTION_url_racine est Enumération
+      	NomLocal
+      	ipv4
+      	IPv6
       fin
      type : 131072
   procedures :
@@ -308,14 +314,19 @@ class :
      code : |1+
       // renvoie l'url racine pour se connecter au site
       // ex ! "http://132.51.15.42:8080"
-      procédure url_racine() : chaine
+      procédure url_racine( option est OPTION_url_racine <utile>) : chaine
       
       url est chaine = "http://"
-      url += "["+NetAdresseIPv6()+"]"
-      //url += NetNomMachine()
-      //url += NetNomMachine()
-      url += ":"
-      url += ""+numéro_de__port
+      selon option
+      	CAS ipv6
+      		url += "["+NetAdresseIPv6()+"]"
+      	cas ipv4
+      		url +=  NetAdresseIP()
+      	cas NomLocal
+      		url +=  NetNomMachine()
+      FIN
+      // n° de port
+      url += ":" + numéro_de__port
       url += "/"
       renvoyer url
      type : 458752
