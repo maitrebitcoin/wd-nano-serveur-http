@@ -120,7 +120,26 @@ class :
       ]
       
       SocketEcrit(canal_http,header_erreur_404+RC+RC+page_html)
+      SocketFerme(canal_http)
       reponse_renvoyée = Vrai
+     type : 458752
+   -
+     name : envoie_erreur_400_bad_request
+     procedure_id : 1425282264363227421
+     type_code : 12
+     code : |1+
+      procédure envoie_erreur_400_bad_request()
+      // 400 Bad Request
+      
+      header_erreur_404 est chaine ANSI = [
+      HTTP/1.0 400 BAD_REQUEST
+      Content-Length: 0
+      ]
+      
+      SocketEcrit(canal_http,header_erreur_404+RC+RC)
+      SocketFerme(canal_http)
+      reponse_renvoyée = Vrai
+      
      type : 458752
   procedure_templates : []
   property_templates : []

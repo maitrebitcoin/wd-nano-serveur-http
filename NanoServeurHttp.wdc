@@ -21,6 +21,8 @@ class :
       	eve_avant_chaque_requete est une procédure
       	// appelée si aucune uri ne correpond 
       	eve_requete_non_traitée est une procédure
+      	// appelée si une requete invalide est recue
+      	eve_requete_invalide est une procédure
       	
       	duree_max_lecture_requete est une durée
       		
@@ -94,6 +96,7 @@ class :
       SI :est_démarré ALORS
       	RENVOYER (faux,"Serveur déjà démarré")
       FIN
+      
       // créer un nom unique
       :socket_attente_connexion	= "socket_" + DonneGUID(guidBrut)
       :thread_attente_connexion	= "thread_" + :socket_attente_connexion
@@ -114,6 +117,7 @@ class :
       			// crée un canal de communication
       			canal_http est chaine = SocketAccepte(:socket_attente_connexion)
       			// traite la requete
+      
       			_traite_une_requete_http( canal_http  )
       			
       		fin
@@ -158,6 +162,8 @@ class :
       // gestion d'une reuête htpp vi la socket de communication <canal_http>
       procédure privée _traite_une_requete_http( canal_http )
       
+      // réponse
+      réponse est ReponseHttp(canal_http)
       
       // lecture de la requête
       buffer_req_http est un chaine ansi 
@@ -165,14 +171,14 @@ class :
       (buffer_req_http,duree_lecture) = _lit_requete_brute(canal_http, :duree_max_lecture_requete)
       SI buffer_req_http=""  ALORS
       	// Erreur
+      	réponse.envoie_erreur_400_bad_request()
       	retour
       FIN
       
       // décoder la requete
       requete  est RequêteHttp( buffer_req_http )
       requete.duree_lecture = duree_lecture
-      // réponse
-      réponse est ReponseHttp(canal_http)
+      
       
       uri_demandée est chaine = requete.get_uri()
       
@@ -236,7 +242,16 @@ class :
       
       // lire l'entête http jusqu'au 2 RC
       SocketChangeModeTransmission(canal_http,SocketSansMarqueurFin)
-      TANTQUE Position(buffer_req_http,marque_fin_header)<=0
+      buffer_req_http =  SocketLit(canal_http,Faux,0)
+      TANTQUE Position(buffer_req_http,marque_fin_header)<=0 
+      	// si c'est du https
+      	si Position(buffer_req_http,caract(0)>0) alors
+      		SI eve_requete_invalide<>Null ALORS
+      			eve_requete_invalide(buffer_req_http)
+      		FIN
+      		RENVOYER ("","non supporté")
+      	FIN
+      	
       	buffer_req_http +=  SocketLit(canal_http,Faux,0)
       	SI chrono_temp_lecture_requete > duree_max ALORS
       		RENVOYER ("", chrono_temp_lecture_requete.Valeur) // timeout
@@ -295,9 +310,10 @@ class :
       // ex ! "http://132.51.15.42:8080"
       procédure url_racine() : chaine
       
-      
       url est chaine = "http://"
-      url += NetAdresseIP()
+      url += "["+NetAdresseIPv6()+"]"
+      //url += NetNomMachine()
+      //url += NetNomMachine()
       url += ":"
       url += ""+numéro_de__port
       url += "/"

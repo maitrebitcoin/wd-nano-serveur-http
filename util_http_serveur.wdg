@@ -35,7 +35,17 @@ procedure_set :
       	renvoyer ""
       FIN
       renvoyer Milieu(source, position_séparateur+taille(séparateur))
+     type : 458752
+   -
+     name : NetAdresseIPv6
+     procedure_id : 1425661844983471366
+     type_code : 15
+     code : |1-
+      // renvoie la 1er adresse ip de la machine
+      PROCÉDURE NetAdresseIPv6()
       
+      liste_adresse est chaîne = NetListeAdresseIP("",IPv6)
+      RENVOYER ExtraitChaîne(liste_adresse , 1, rc,DepuisFin)
      type : 458752
   procedure_templates : []
   property_templates : []

@@ -40,6 +40,9 @@ window :
          mon_serveur.eve_requete_non_traitée =  ( req , réponse ) => {	
          	réponse.envoie_erreur_404()
          }
+         mon_serveur.eve_requete_invalide =  ( buf ) => {	
+          	TRace("Requete invalide " +BufferVersHexa(buf))
+         }
          mon_serveur.ajoute_traitement_uri("/",  ( req , réponse ) => {	
          
          	réponse.envoie_chaine("<html><body>Bonjour 	&#128512;<br> Voici la page <b>racine</b> du site <hr>en construction... </body></html>") 
@@ -70,8 +73,8 @@ window :
          BTN_RUN..Grisé = vrai
          BTN_STOP..grisé= faux
          MaFenêtre..plan=1
-         
-         HTM_SansNom1 = mon_serveur.url_racine() + "Site/page1.html"
+         SAI_Url =  mon_serveur.url_racine() + "Site/page1.html"
+         HTM_SansNom1 = SAI_Url
         type : 18
       -
         type : 161
@@ -241,7 +244,8 @@ window :
          
          si MaFenêtre..Plan <> 2 ALORS
          	
-         	QR_CODE = SAI_Url
+         //	QR_CODE = SAI_Url
+         	QR_CODE = mon_serveur.url_racine()
          	MaFenêtre..Plan = 2
          	MoiMême..Libellé = "Masquer le QR code"
          	
