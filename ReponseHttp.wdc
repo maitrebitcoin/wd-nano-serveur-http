@@ -64,16 +64,7 @@ class :
       	retour
       FIN
       // déterminer le type mime
-      le_type_mime est chaine ansi = "text/html"
-      selon Minuscule(fExtraitChemin(nom_complet_fichier,fExtension))
-      	CAS "jpg"  : le_type_mime  = typeMimeJPEG
-      	CAS "jpeg" : le_type_mime  = typeMimeJPEG
-      	CAS "png"  : le_type_mime  = typeMimePNG
-      	CAS "ico"  : le_type_mime  = "image/x-icon"
-      	CAS "css"  : le_type_mime  = "text/css"
-      	CAS "js"   : le_type_mime  = "text/javascript"
-      FIN
-      // rebond
+      le_type_mime est chaine ansi = fTypeMIME(nom_complet_fichier)// ex : "text/html"
       envoie_chaine(buffer_contenu_du_fichier,le_type_mime)
      type : 458752
    -
