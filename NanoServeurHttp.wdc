@@ -118,20 +118,17 @@ class :
       ThreadExécute(thread_attente_connexion, threadSécurisé, _attente_connexion)
       PROCÉDURE interne _attente_connexion
       	// boucle sans fin en attente de connexions
-      	BOUCLE
+      	tantque pas stop_thread
       		SI SocketAttendConnexion(:socket_attente_connexion,10ms)  ALORS
       			// crée un canal de communication
       			canal_http est chaine = SocketAccepte(:socket_attente_connexion)
-      			// traite la requete
-      
-      			_traite_une_requete_http( canal_http  )
-      			
+      			// traite la requete dans un thread dédié
+      			// => _traite_une_requete_http( canal_http  )
+      			nom_thread est chaine = "T" + canal_http
+      			ThreadExécute( nom_thread,threadSécurisé, _traite_une_requete_http, canal_http)
       		fin
-      		si stop_thread ALORS
-      			SocketFerme(:socket_attente_connexion)
-      			retour
-      		FIN
       	FIN
+      	SocketFerme(:socket_attente_connexion)
       fin
       
       // succès

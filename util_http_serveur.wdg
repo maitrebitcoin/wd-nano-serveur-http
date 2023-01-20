@@ -45,6 +45,7 @@ procedure_set :
       PROCÉDURE NetAdresseIPv6()
       
       liste_adresse est chaîne = NetListeAdresseIP("",IPv6)
+      // renvoie la dernière pour ne pas prendre les adresses en "fe80::"
       RENVOYER ExtraitChaîne(liste_adresse , 1, rc,DepuisFin)
      type : 458752
   procedure_templates : []
