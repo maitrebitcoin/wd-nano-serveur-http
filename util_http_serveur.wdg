@@ -2,14 +2,14 @@
 #Internal properties refer to the properties of controls in windows, reports, etc.
 info :
  name : util_http_serveur
- major_version : 27
+ major_version : 28
  minor_version : 0
  type : 7
  description : ""
  subtype : 0
 procedure_set :
  identifier : 0x13c643a30157478a
- internal_properties : BwAAAAcAAABGLu41kG7fjQV3iS4F72qmnKaNh5694reolNKIW0iw
+ internal_properties : CAAAAAgAAABGLu41kG7fjQV3iS4F72qmnKaNh5694reolNKIW0iw
  code_elements :
   type_code : 31
   p_codes :
@@ -51,11 +51,11 @@ procedure_set :
   procedure_templates : []
   property_templates : []
  code_parameters :
-  internal_properties : BwAAAAcAAAA6ih3UbgNXHwTtiPSFUEj+2fi/m7v4QV2rqidAupM=
+  internal_properties : CAAAAAgAAAA6ih3UbgNXHwTtiPSFUEj+2fi/m7v4QV2rqidAupM=
   original_name : COL_SansNom1
 resources :
  string_res :
   identifier : 0x13c64393015508db
-  internal_properties : BwAAAAcAAAAnMYFQ1bL/vz9ehh7L22SNNSlIzGTOI8h5F/WtgDNP
+  internal_properties : CAAAAAgAAAAnMYFQ1bL/vz9ehh7L22SNNSlIzGTOI8h5F/WtgDNP
 custom_note :
- internal_properties : BwAAAAcAAABtB9HWVzrXO2+4NDRVK0vmzaNKrCKqH1DBX30lMmGZ
+ internal_properties : CAAAAAgAAABtB9HWVzrXO2+4NDRVK0vmzaNKrCKqH1DBX30lMmGZ
