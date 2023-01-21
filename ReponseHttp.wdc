@@ -65,6 +65,13 @@ class :
       FIN
       // déterminer le type mime
       le_type_mime est chaine ansi = fTypeMIME(nom_complet_fichier)// ex : "text/html"
+      selon Minuscule(fExtraitChemin(nom_complet_fichier,fExtension))
+      	CAS ".js" 
+      		le_type_mime = "text/javascript"
+      		
+      	AUTRE CAS
+      		
+      FIN
       envoie_chaine(buffer_contenu_du_fichier,le_type_mime)
      type : 458752
    -
