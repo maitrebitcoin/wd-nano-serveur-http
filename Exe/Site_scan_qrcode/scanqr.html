@@ -1,0 +1,72 @@
+<html>
+  <head>
+    <title>Scanner un qr code</title>
+     <link rel="stylesheet" href="./mon_style.css">
+  </head>
+<body>
+
+Scanner un QR-Code 
+<hr>
+<video id="videoElem"></video>
+<hr>
+
+<p Id='envoi'></p>
+<hr>
+<p Id='result'></p>
+
+</body>
+
+<script type="module">
+  import QrScanner from '/nimiq/qr-scanner.min.js';
+
+const lib_envoi  = document.getElementById('envoi')
+const lib_result = document.getElementById('result')
+const videoElem  = document.getElementById('videoElem')
+
+// créer un scanner
+const qrScanner = new QrScanner(
+    videoElem,
+    _on_qrocde, //result => console.log('decoded qr code:', result),
+    { returnDetailedScanResult: true }, // options
+);
+qrScanner.start();
+
+// appellé lorsqu'un QR code est reconnu
+function _on_qrocde(resultat_scan) {
+    lib_result.innerText = resultat_scan;
+    const uri_notifie_appli  =  document.URL + 'envoie_scan?code='+ resultat_scan.data;
+    lib_envoi.innerText = uri_notifie_appli
+    _httpRequeteAsync(uri_notifie_appli, (reponse_appli_wd_json) => {
+        // retour de l'appli avec du json
+         lib_result.innerText += reponse_appli_wd_json //JSON.stringify(reponse_appli_wd_json)
+    
+      }
+    ,(status, response)=>{
+        //Erreur hhtp
+        lib_result.innerHTML = "ERR : " + status + '<br>\n'
+     }
+    )
+    qrScanner.stop()
+}
+
+// envoyer une requete http a l'application windev
+var _httpRequeteAsync = function(url, callback_ok, callback_err) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    //xhr.responseType = 'json';
+    xhr.onload = function() {
+      var status = xhr.status;
+      if (status === 200) {
+        callback_ok( xhr.response);
+      } else {
+        callback_err(status, xhr.response);
+      }
+    };
+    xhr.send(null);
+};
+
+
+</script>
+    
+
+</html>
