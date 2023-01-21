@@ -1,21 +1,13 @@
 body {
   background-color: linen;
+  font-size: 48px;
+  font-family: 'Courier New', Courier, monospace;
 }
-button {
-    background-color: rgb(233, 184, 93);
-    font-size: 48px;
-    margin: 10px;
-    padding: 20px 30px;  
-    border-radius: 24px; 
+video {
+    background-color: rgb(235, 233, 229);
+    width: 100%;
 }
-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.32);
-    background-color: rgb(238, 198, 123);
-}
-button:active {
-    transform: translateY(-1px);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    background-color: rgb(236, 176, 63);
+p.resultat {
+    color: green; 
 }
 

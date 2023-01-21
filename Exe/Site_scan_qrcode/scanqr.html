@@ -6,12 +6,12 @@
 <body>
 
 Scanner un QR-Code 
-<hr>
+<br>
 <video id="videoElem"></video>
-<hr>
+<br>
 
-<p Id='envoi'></p>
-<hr>
+<p Id='envoi' class='resultat' ></p>
+<br>
 <p Id='result'></p>
 
 </body>
@@ -33,7 +33,7 @@ qrScanner.start();
 
 // appellé lorsqu'un QR code est reconnu
 function _on_qrocde(resultat_scan) {
-    lib_result.innerText = resultat_scan;
+    lib_result.innerText = resultat_scan.data;;
     const uri_notifie_appli  =  document.URL + 'envoie_scan?code='+ resultat_scan.data;
     lib_envoi.innerText = uri_notifie_appli
     _httpRequeteAsync(uri_notifie_appli, (reponse_appli_wd_json) => {
@@ -47,6 +47,7 @@ function _on_qrocde(resultat_scan) {
      }
     )
     qrScanner.stop()
+    videoElem.hidden = true
 }
 
 // envoyer une requete http a l'application windev
