@@ -58,6 +58,17 @@ window :
          FIN
          réponse.envoie_chaine(aide_fr) 
          })
+         mon_serveur.ajoute_traitement_uri("/api/date", _api_date)	
+         procédure interne _api_date(req est RequêteHttp, réponse est ReponseHttp)
+         	ma_reponse est un JSON
+         	ma_reponse.date   = DateSys()
+         	si req.tab_paramètre["heure"]="1"
+         		ma_reponse.heure  = heureSys()
+         	fin
+         	ma_reponse.machine = NetNomMachine()
+         	réponse.envoie_chaine( ma_reponse.VersChaîne() ) 
+         fin
+         
          mon_serveur.ajoute_répertoire_virtuel("/Site", fRepDonnées() + "\Site")
          
          num_port est un entier = 8082
@@ -246,7 +257,7 @@ window :
          si MaFenêtre..Plan <> 2 ALORS
          	
          //	QR_CODE = SAI_Url
-          	addresse est chaine = mon_serveur.url_racine( NanoServeurHttp.IPv6 ) //+ "Site/page1.html"
+          	addresse est chaine = mon_serveur.url_racine( NanoServeurHttp.IPv6 ) + "Site/page1.html"
          	LIB_URL_QR = addresse
          	QR_CODE    = addresse
          	MaFenêtre..Plan = 2
