@@ -75,6 +75,12 @@ class :
       taille_debut est un entier = taille(:uri_avec_slash)
       partie_relative est chaine = Milieu(uri_demandée,taille_debut+1)
       
+      // si on demande la racine
+      si partie_relative="" ALORS
+      	// page par défaut
+      	partie_relative = "index.html"
+      FIN
+      
       nom_fichier est chaine = :répertoire_local  + partie_relative
       renvoyer nom_fichier
      type : 458752

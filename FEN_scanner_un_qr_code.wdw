@@ -272,7 +272,7 @@ window :
       		réponse.envoie_chaine( ma_reponse.VersChaîne() ) 
       		// appel Ck
       		code est chaine = requete.tab_paramètre["code"]
-      		ExécuteThreadPrincipal(on_scan,code)
+      		on_scan(code)
       	fin
       // pour servir les .js, .css, image, etc.
       serveur_local.ajoute_répertoire_virtuel("/", fRepDonnées() + "\Site_scan_qrcode")	
@@ -304,9 +304,8 @@ window :
       nom_fichier_html est chaine = fRepDonnées() + "\Site_scan_qrcode\scanqr.html" 
       réponse.envoie_fichier(nom_fichier_html)
       
-      // un téléphone nous a envoyée une requete ,on passe a l'étape 2
-      ExécuteThreadPrincipal( ()=> { MaFenêtre..Plan = 2 } )
-      
+      // un téléphone nous a envoyée une requête ,on passe a l'étape 2
+      MaFenêtre..Plan = 2 
      type : 458752
    -
      name : on_scan

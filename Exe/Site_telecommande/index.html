@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Télécommande</title>
+    <link rel="stylesheet" href="./style.css">
+  </head>
+<body>
+
+<button onclick="envoie_commande('bouton_rouge');">ROUGE &#128308;</button>
+<button onclick="envoie_commande('bouton_vert');">VERT  &#128994;</button>
+<button onclick="envoie_commande('bouton_bleu');">BLEU  &#128309;</button>
+<button onclick="envoie_commande('bouton_calc');">Calculatrice</button>
+
+</body>
+
+<script>
+
+function envoie_commande(nom_cmd) {
+
+  // envoyer une requete http a l'application windev
+  url = "./" + nom_cmd
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', url, true);
+  xhr.onload = function() {
+      var status = xhr.status;
+      if (status === 200) {
+        console.log( xhr.response);
+      } else {
+        console.log(status, xhr.response);
+      }
+    };  
+  xhr.send(null);
+}
+
+</script>
+    
+
+</html>

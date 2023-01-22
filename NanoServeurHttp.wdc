@@ -196,9 +196,9 @@ class :
       
       // si on a veut traiter par code cette uri
       si tab_eve_uri[uri_demandée].existe ALORS
-      	// appel code pour cette uri
+      	// appel code pour cette uri dans lle thread principal
       	proc est une procédure = tab_eve_uri[uri_demandée]
-      	proc(requete, réponse)
+      	ExécuteThreadPrincipal(	proc, requete, réponse)
       sinon
       	// gestion des répertoire virtuels
       	cherche_répertoire_virtuel(uri_demandée, réponse)	

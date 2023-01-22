@@ -1,0 +1,250 @@
+#To edit and compare internal_properties, use WINDEV integrated tools.
+#Internal properties refer to the properties of controls in windows, reports, etc.
+info :
+ name : FEN_télécommande_appli
+ major_version : 28
+ minor_version : 0
+ type : 2
+ description : ""
+ subtype : 0
+window :
+ name : FEN_télécommande_appli
+ identifier : 0x23ccd7250c5f5e9b
+ internal_properties : CAAAAAgAAAAd+0hmNtJhVLbSZ44Dk4WCWkwAV78oHmwv1wxUJV96toX18EReK4zy6P41OZd7aYAm7/qmG69BwvYJRL2zjT2n5P0hURe7EUg2Xez9MFF4CZ37KJ8FwxlMdkAJSaAiqKj4nlDgP9Rz1PwPuC/vVsSPh9Np/iw2XQcsnVblOhjm/SjQJQ8avygPavkBoYN0KSXJaF0kaVB3J178NiPek1E7/U8xjYjUbQiTCTuuY+Gm8vf20zVsUplKopVENDs7D5Gxg7jm08h+zm9uJtEOGZ70smIM4ujLRUkU8H9+txUhrCLOpmlJS3jQQvY0go1OyNPU9rAUoQZwqbejtjdM6IzOwH96mYi6XkFdezzf6fboAiKa/OKQ6Emiay6Hm6OO1FzKRGEBBChxQhwCvV2Fq7Kx/vHeeXOehniVZN1vkJS+GqnWowEYLaoDFQywaMCJt0x3EvA9smXCPjLjgrv2ou7yv772kerkA0Ev08LUvo/Nr1z7lhU+XXFEo7P+k/moQUw2DWtJDmPiHMO3IBFH1hTssGbXjm6JcWoXBoWPiQdt23GvFbO0knEzfyp2rOCRhR4nmMISgAdFQXsEXweQdYOb6l8pZLsTAiQpKICUMoYKuP5tcZZs0fitWAIZhV/GPqjMF80bSmcBMJ00u2hspQHQrNFTL7Ykf3FdkwAyEQaOlUBGEk75aYLJl7dqKTE6cwHa/X76877bX0R4u1f9DtbWGusWQSFhq2sL2BwX5X7Jy1vKEALo9w==
+ properties :
+  width : 696
+  height : 450
+  widthClient : 694
+  heightClient : 418
+ controls :
+  -
+    name : QR_CODE
+    identifier : 0x23ccd73d0c66be10
+    internal_properties : CAAAAAgAAABoxYxXXWHY4hmF9815w2gG7fN4DVI7d6kHFOv1bD9pMJkYKdlSPro84jf2435WbAd5Zmc44fpuofv+gnfLDQ+thotR0WhoYAjv8du7Z38iKVof2G3Uuku7Q0JpSenaOia5zYpGze1HdlD3PU3RKe94cixh+jWZnhjbIWKZosVYw9MQk9R7Kb0tbxviCuTuSUoosNN9npqjUEqSipCQBUUPxEv+AKbRSE503TCdxmVjwR2vFJeiQ+evHn2WgB94yGeK32eq7908MfyJli/s4rpHlb/i6VPqbkX90Td0ytNPKbdEmehwemyHFH9IbP8gtpe/ek4ruy3EcLWuStqawDd8zCYS+qfN/RYXMzxwghe6NvCrkSMlMVUq5cA5C7SEsBy1z3JlTZhjxMMIMhYkBwvN0AArkDzAAnJFv0/bw3uJsTRBHdXLt6GM1TMGauTquCptFymDnWt4jImFa9iAvuaCY4lqgTdEjPJyZ52wp7l4hEuaJ/SURQLZ9ZZggtq6WpaJFNWh3BS0YKBBOxgkFW09H1DwOjy8RZmFz8cSFruXDB3Z
+    properties :
+     x : 16
+     y : 86
+     width : 360
+     height : 290
+    type : 26
+    code_elements :
+     type_code : 58
+     p_codes : []
+  -
+    name : LIB_1_scanner_ce
+    identifier : 0x23ccd73d0c6abe20
+    internal_properties : CAAAAAgAAACsZ/Jf4IVpuTdwrwkKsiJ6bbH89BRIzqyVr6hQzC7glte1Joeok795DBhjbQcRDzCjGriTHchlw7sHZcb2MkMicwJeJVtF36HsFAtqLvs2O7jPx6z/qUrSe+oHQM9Fsiucydh2RyFDAk0IBioreIyGhYZwO/jse6rLezHDKX/HXWz0rX/FIzkDbV4Hf1RnMUCD+4dQRvYjH85GsCQeEfuy1vBNy4ErDyYqfUG3zKuW8DIs/NzCXu5+RdGMLC7eP1OZnKKnDpHufzEd+sOMZgZEyeTk7+sK0IYfDm/GbYyAvqcnXMxSAkkRzIo33gqshqydsDJ+W9LLMmms7wAJpVSAQWN2PeANIgBrTz2UDuq2bqO4s6MLfbcoFnkfjsn7uebLPMHhuzlT9tonn6q9EYLvIKiA28Bfl7+xKGC1BBlsS5wJ/qUARQzdkXGUrizKd6OwiZOc6OibjLzPiE51js9fdYG8lQvHaX4aEXwDJmeAN0DIi4Tas2/XYV/p5k8l5bmo
+    properties :
+     x : 16
+     y : 11
+     width : 360
+     height : 75
+    type : 3
+    code_elements :
+     type_code : 2
+     p_codes : []
+  -
+    name : BTN_GOTO__SITE
+    identifier : 0x23ccd75b0c7234d7
+    internal_properties : CAAAAAgAAADvGAeZflIs99wSIJ9YKDjsFIlh+pF+62EIAkNwiBzrPEGaxHOnSvpLWzZwW34Rq/2Y0cgN+3L7MQ5RrdqflGCM+cNjL0W/SLFkYKB5HMY+17MraC3+PgJUvVbJFtcK3VXKXbPgCO7N61/rWktiPKbeBfVV+evP6a9HsufBBgfMZtQoMMYJR0IaCZtBRs04DKqqxbqNrD8C/i9L4mqoYbi81Ai8Ukbavy9StzWsr0W16XFpB/GcepgKi+pwpWAwvWn26zRV0uaTYXEnwQuOf9HlzqTrcwAulA4skUeAv9MsvdZ1gSJYRknFSsClJ+AlEVtn49LDOep+Ff2J04FD5rXT602og/AHti9fNdcI6VZoG8DlK6VGlauyHzpT5/V0Rzf5Ai1JCOhzzYHpcaUnxHrsybazxDa/zQK8ZPwvT8N3b8p6VvOR/4Zt7WZN4iwarh/tNVBmWEhiBIBXLfQ+cXVj50gpLJk1YpAXFlfJQGVSC8WKqexyCJqLz9/ftJa2/MXSzwkprsTcCL0XGqkK7G6CksijSMQfs0tHFIblzjzOfkLkNoaUx6zo8mFZQ4rr8UZhCnmpAYOFd5C4i2mo7RTOw1SM9n7EBVe25r17rZDn0KcqjXlVG1S+mfSjCO1gMaR+jAfe4Wav64rsbPc+VFwSmR1cbN/5ArHhxBg7HZjtt4fyqzCIK4fYgqzoU56oOwOHxtEUnzTgiC7/CLCw27qOKYS1VXD9Xg9yMdt9hzKJtXA286KEiXGyiSYKga3s+Gja6/TkqY8q8yaS1Xt8Ww==
+    properties :
+     x : 16
+     y : 376
+     width : 360
+     height : 24
+    type : 4
+    code_elements :
+     type_code : 4
+     p_codes :
+      -
+        code : |1+
+         url est chaine = MoiMême..Libellé
+         LanceAppliAssociée(url)
+        type : 18
+      -
+        type : 161
+        enabled : false
+  -
+    name : BTN_VERT
+    identifier : 0x23ccd7870c80e01a
+    internal_properties : CAAAAAgAAAAiOtrv1eYfyFu6Y1mowzMtAGnFKTBvAfqiS+x/BEMa2xzpJqwAfCjSFqHbPVuE5wxgpRVclaQBwzie+nQPvKsqZyWuoxk3avfJZO62S50SBliZUvhKWY77+gQNljJLBhEqceQAQmjB1ToR+XUo8KeNf2sq8t9br9FC16wrh5YUphqz7XxDmso151C1L3sHFaZJ8yoNkjMopZ4pIWh8CqZ/1sx5fWdgx3sodXSvQekr/ZNZZmSB0A3Dlh7LvDBvrMMgjIVjXJtEJ7UYE/F7oc7I+oW5lVyhkdljPknfDDtC/eE2tVtSw9yqUaHRpPYl/+ZuR7ASFlZgqLlDY4LPbR24KFLhe3lOq7+biv2IikVFzlVUuXc4SmKpQf9OKuuBOoySjMJiinv88MeQmlehq0qPW+kUd8YqmE+Cm2EptRGgn8XEvCo3g7jiOb+E1JVr5twJfv2O3m02rJS4W/ilhWinM7L50Rz5qTSZvytwWtlC6jM90FzEqXyegN8+c97+cT1Q8KxgUFCIgmgJiE9gEdvkRZWtdmXqRR/axEPtJp1+UalDZ3CD/QQiSmZyrIqGAVP+MmO6yq3IMA7VSAnK5wsJVKywtP/pzwnCnEIn+91tVrNx+CmPZigstO2UIZRcUFrbqHYz61B0X4FlX93ifP20pcvxCmnowz0tEXADP572jRSHk10QTNHYQQnBoj0om9b7lVy0DeyQqJ1gRJIuDEGgi/++15qPmp2suTa7JExkOAJ4sPjhoenWHCCfZ1djekDVia0uMJ8ZnODcmS4s4u+i/WCdLlaXpQWaXdkV/gofBguQJ0nxJ4fxTESIT1PgVP1wAmblaM1EwOo=
+    properties :
+     x : 458
+     y : 229
+     width : 180
+     height : 61
+    type : 4
+    code_elements :
+     type_code : 4
+     p_codes :
+      -
+        code : |1+
+         MaFenêtre..CouleurFond = VertClair
+        type : 18
+      -
+        type : 161
+        enabled : false
+  -
+    name : BTN_BLEU
+    identifier : 0x23ccd8710cd07017
+    internal_properties : CAAAAAgAAAANqTWa0OMcxdbLVGxDrozY61y+i1Ia+E1jsrqPatPGhRK1DAqa2ITwVakb1ZMUdxwADY3sxTxZK7D+ggT/FGPiv9VOa4H32lfZFGS4kU+oFO6zp0KVye4LOhTtRpLrdgEq8eQQYkhx1SoRSVVYQActz/t68g8LT4EiJ2y7B5Yk1pqzDQxj+hr1d/DlL4t3FQb5o7pNAkPIFd65YXg8SrZPluxZzSfgt3sYFWTvEVmrHQOJluSRgE2TVi4rLFCPHHMgDAXz3Bu0B8XYw3GLUe7ISnUpFQxR0SljDulP7NtS7SH2tYtyQ6xKIYEhhOb1f+b+t2BSZiaA+DnTo1JP7c1IKPKha3nuu/+rCg1oOlWF7oUkSfcIeiLZgU/umgshKhwyDGLSijtssHcQChfxW0qvK1mE9zZaeB/CC2G5nen4951chOJ/e8Da0ScMfH3jfvQh1oVmBgX+5CwAg+AN3QC/K4qB6eSxMUyRh9OYwpFagkv12LSM4eRWmEcGWwaWiTWISHQ4eOjwmqAxsHcICTNc3Q3Vzi0iLbdyLMsVDrVWqQF7b4hr1aya4m6aVHI+2at2yotyEmWwKIYdkNHS38PB7CQ4TEchF+HapGrvwzXl7ivpYKHX3pDEbJU8Sfy0KBJzwN7rE+gct5lNJwXKdBUsPQO5IlHAS7WlefiLR5buJawfe/W4ZPnwWdGJiiVgM05zbWQslWS4QDXozBq2RLn4A3fmb3ekwnGk7erLfLTIFEb8hCSlHdU6kHRjq8uvjsy57QEKZFs1gNSgXRLA/nO+cPNmL0fgzC7tyjbyk4X+Z/bX9m69kHTYZy/jNHjLY47j/WnibcAxLwU=
+    properties :
+     x : 458
+     y : 143
+     width : 180
+     height : 61
+    type : 4
+    code_elements :
+     type_code : 4
+     p_codes :
+      -
+        code : |1+
+         MaFenêtre..CouleurFond = BleuClair
+        type : 18
+      -
+        type : 161
+        enabled : false
+  -
+    name : BTN_ROUGE
+    identifier : 0x23ccd8770cd387c6
+    internal_properties : CAAAAAgAAADAq1+7yBckMpsv2Gcmun8qchLPuHh8YqIm+tNQ1yjhHHxjCbN+BbRfM0jtE7EN2WVD78BfHlolgEU+0wrS+S/GUa8PyE4WojleV/H3qHucMmkrBQO151oNoBSi0jHkeem7Z8MBlEYjpBE+29/XWAKKORZ97tUrpcl5kPl6qSEIV+Iw+0ntR9HRJoQKEtTkRdcFIXUJJOAp7fXwxwOGT5jbqZ2DeFZXbmtxdPA3s3aXnQSsC0+VA9MFxchEPpF2BvviaQKTvrflORYB5BxqLKylOAGxQNAqRBwVTMvrxNvDX7+5JeIMep3wpuVkZMGVwPI6+NUpHAxtXU7tyxYfsj3Bsj5ikXfUOQPU99u9UVlgY9QTAyG9EDl8ow+pqg/vxsiUznJ9mWDVfgXBtvNSD5S9GJ4Dac6qCZxvya+1xTuGAyLN65IlGEugcrjwE/jaWk6s53cKpln2jSSHfGThpdaDOjXFiTDGD0e5+RVvhXlr8FBDlD4qqWU0KWuRPdc+0wp15mfD8naWQfAmuytlQo96HKf9yNsLmyA0qBvU9w8bWIGPANXEI2b/4NiwkuQxBxn3XN7fE+PZCtIuK4Id0Kud1iBhyiAMtRRiWzawybShz5+kX0R31TI3BJQpgxznY7V5WUHKXTkr5Rv3MmaPtS0Gwz1fW6dsQ0cUvh6uae5kgrW+8zZuidu/0GF2mshg0ZLofN2vxVHOB8BtqK6QfRthxUx2mE7y7FckLXff4lRf62htDemBEqNsoNxCMnEy2LZYJMB3mfo0OiZr7s5qEe3a5VjDXIgQogtnZeDLftVYfjZ4m0nyi9HAjmAi3InFQfWzkS6Oo5rZ
+    properties :
+     x : 458
+     y : 57
+     width : 180
+     height : 61
+    type : 4
+    code_elements :
+     type_code : 4
+     p_codes :
+      -
+        code : |1+
+         MaFenêtre..CouleurFond = RougeClair
+        type : 18
+      -
+        type : 161
+        enabled : false
+  -
+    name : BTN_Calculatrice
+    identifier : 0x23ccd9360d0a7420
+    internal_properties : CAAAAAgAAADgybNFEl3Sl6MntCLJAzGgQuv67Qg8fxVIaIjgMxHwPtEdhMBOt8dhy2mJJs0cRYEA/ffjVHM60rK5qvLRMYDJM33rQ3etnyIF/Fr06I3Lg99YhCcEgpumtgwLg1B0p5UdFBMEn0toBNqOUL9TLqT6rS41GdlKsHq7ZujIqCR+lJniav+/V4hTsbvjgZzyoMO15CVB6Zp9wU5cbNjAut12SBbNkpe5hpw2ORWAP/vYf+gKRnttB4fUv95382shNdz7CCq8XrgfHVuzcUCF4lgLoJLb2AzIq8ep38Nul8kC5JGuFYzA127mvciUgd+9W4sJY8YSZAKA+ThY2KyqWeCKfmD4wBF0UGepp7DWaBWBs7ncZQOe0xztGEBHm5XALvkM5AMBbZqJwxMZkkDDFJHebAumdyKnlqTozO4XOfDumdOjbwgKOpi026yM4xqnFXpFATwQE2pa/g5pcZe2hX2120NeG6naLQLr2jFXz2E/8iOe3fgLtqgIwtwgEAWq7iWcMdG8kUdYQIbeUvB748Zu/5by+qZFk6uyoSPmWXt/zcXQ4MBublR0eG8GH7eMtplSsUZk3zhuoK6Kiv59YfDXlDOzSrpE90OUcybKLNkCbrFIIxvO9fb00pQwSm9kqRRlQ1U/Yg/8FVkGY9p1Gv6moUAiSOK5kYETsKo+wHzdAehCchM5sT02zcx3g+xIOG5/5tlEKvNSLFNROMWTxMgkP0Rnadyb4PpYs5WwU45NUgOMAGO/cQp/J2ZYgRuAbqm0dQUVpD30Bx/yEqwQS+EVXE0wvrHpbyFnY9Aqw44z2MwXNjbz2zYwTF9lBAUf2xRP65fXXV43Jrx7ewJTNA==
+    properties :
+     x : 458
+     y : 315
+     width : 180
+     height : 61
+    type : 4
+    code_elements :
+     type_code : 4
+     p_codes :
+      -
+        code : |1-
+         LanceAppli("calc.exe")
+        type : 18
+      -
+        type : 161
+        enabled : false
+  -
+    name : LIB_FON
+    identifier : 0x23ccd9ba0d137723
+    internal_properties : CAAAAAgAAAD3PSxdM9PLW7WZwLKiYRLGftrjZEErvsrQRL+FfvQ7c6DeDE4CgzvaXMG8UqSz4jkB4kFz7a8LzPtYa6cs/3xq2HGEVZebvHiQyglVYz4bjGSRPa6p0MqHFaUvQnR75QbyyK5REqQ0DxpGMDzJ4TbtDLl6FQ+zrlkoRwGro+F+JWtdTOTN8GPNAT0hoGVzu2eQzaZdjMtuutY8XUC/CNKPBLEbpnPK7rCEcikPZXE933vmusQg3zMmiEpdvdhiNRTpNSHc8UUUmWR1Btxw8kAI8uGdJ2s1uDeAkEj0pYhmUysFjIuwp1Y0NWDeSjKj+I57XfqNeGX1nwvYTQt9g1GzJFcrSzT7+nFvXvEiAl27aAuVy9WHUGOos9jmO4IJcdd9oJ6QWvMz94biwkD7TNtmiUNjCajpKmC59S5nSHI2NGD905f25aT4c0SBw8RiotbMh4/mAIs=
+    properties :
+     x : 399
+     y : 11
+     width : 281
+     height : 389
+    type : 3
+    code_elements :
+     type_code : 2
+     p_codes : []
+  -
+    name : LIB_1_scanner_ce1
+    identifier : 0x23ccde6b101ac878
+    internal_properties : CAAAAAgAAADaDRpAoAwowyYz8AjpRgWxR+Fml6aBip8genWy/D8shU7wE6QTEsoDa3dTBM6Diw3vdmCLZRAGcm7RlU9dFWy+UsXNAPRq4BBcrAULCJiKh+LDpGc+ILTfAATDNt04AzwC1pKuGn4oH2EKJJCxGyBTPintS3XM7vkkoJygcY7Hh2LwDvhqYZXfn/VQeioPDiIXfIVUC5b4BAwvZnsPjsBANQcAEfkrBtuVCeeohOqo7DZiTdqQAfwC8pLSAAyriYvOcL9DbkCjS02r919LEqam1dSLfyaVWAPLeiKafpbfU89YqM745yaUcx0heR7pBj/A8QoJg9moxuHbaGeZEO06T6vg/cOUhWogpB+OexipMOvR3fJ6R8E5CAU6QZdCYoUZv8n4YdeQdAG4hDXJ3lpjuV+oRTjNYp0QNvg/SKkcve9+RaDDzmZA36WByxfeMwzNu8tqGoLcET8WjsDXOgKsu6aIf/L+1vPDjsAts+VXFW/0BNajs6G3i2OzforALQ4vzVE=
+    properties :
+     x : 399
+     y : 11
+     width : 281
+     height : 27
+    type : 3
+    code_elements :
+     type_code : 2
+     p_codes : []
+ menu :
+  name : _Menu
+  identifier : 0x292573e513b5f221
+  internal_properties : CAAAAAgAAADAC57dJyj0dAWu58/PH0JDw1Crm9KM3lg0XSaBAQ41WqT06R9JfU0qGK5sHUl8/xHCuvP3y9tLeLLOVaAgM2FjnfwSCRBgXqneLsHogwTYpIXuB1zp2uXtmOXYyGd6i+ek6BBvtJ0ylgF/MxkRipfZWyrlf1LfZU8sRg27m8bznXeLkm/Wj85gzandWxGPmehvC3c5z5YHuRQRk0A5oo8Y9BYw4VI8dt8xVgdEG41p/KPL0W1ttggwAwCbi9hL9mdmp15X88LHjIw7AGfRS/Vcz6mxBkZ2f4SxDQi52Q==
+  options : []
+ languages :
+  - fr-FR
+ popup_menus : []
+ message_bar :
+  internal_properties : CAAAAAgAAADG0006i3ptxMcUE+O5cGvDhb43eRlY9UEE1z/7izK93v/ToMiwACETQQw4eQhZuJRMFa6SBwwT+zSdDbdc5HEkXDob51ldPFNKsP+0MWY=
+ code_elements :
+  type_code : 1
+  p_codes :
+   -
+     code : |1+
+      PROCEDURE MaFenêtre()
+      serveur_local est NanoServeurHttp
+   -
+     code : |1-
+      
+      init_télécommande()
+     type : 34
+   -
+     type : 180
+     enabled : false
+   -
+     type : 230
+     enabled : false
+  procedures :
+   -
+     name : init_télécommande
+     procedure_id : 1426755691559218227
+     type_code : 14
+     code : |1-
+      procédure init_télécommande()
+      
+      // pour servir le site dans .\Exe\Site_telecommande
+      serveur_local.ajoute_répertoire_virtuel("/", fRepDonnées() + "\Site_telecommande")	
+      
+      // commandes
+      serveur_local.ajoute_traitement_uri("/bouton_rouge",  ( req , réponse ) => {	
+      	BTN_ROUGE.ExécuteTraitement(trtClic)
+      })
+      serveur_local.ajoute_traitement_uri("/bouton_vert",  ( req , réponse ) => {	
+      	BTN_VERT.ExécuteTraitement(trtClic)
+      })
+      serveur_local.ajoute_traitement_uri("/bouton_bleu",  ( req , réponse ) => {	
+      	BTN_BLEU.ExécuteTraitement(trtClic)
+      })
+      serveur_local.ajoute_traitement_uri("/bouton_calc",  ( req , réponse ) => {	
+      	BTN_Calculatrice.ExécuteTraitement(trtClic)
+      })
+      
+      // lancer le serveur
+      num_port est un entier = 8085
+      soit (bok, err ) = serveur_local.démarre_serveur(num_port)
+      SI PAS bok ALORS
+      	Trace(err )
+      	Ferme()
+      FIN
+      
+      // init QR code pour lancer la téélcommande
+      QR_CODE					= serveur_local.url_racine(NanoServeurHttp.IPv6)
+      BTN_GOTO__SITE..Libellé	= serveur_local.url_racine(NanoServeurHttp.Localhost)
+     type : 458752
+  procedure_templates : []
+  property_templates : []
+ code_parameters :
+  internal_properties : CAAAAAgAAAARaqIs1pWWTrjJkc2sbefp8NGAHSVvdRgpQIePRe9rhkbpERRVEF+Nx8mIqTxrVGdwHX99jtU=
+  original_name : Modele1
+resources :
+ string_res :
+  identifier : 0x13ccd711009b130b
+  internal_properties : CAAAAAgAAAAZ++HSz2luvwiNhadWl8v3mh2d0Pq0fCIps02kogrcwVHmCg==
+custom_note :
+ internal_properties : CAAAAAgAAAC68/W0/adbG0nFCRhrE42B5HRnbDzVHaz86sSQyxlBk7I=
+rad :
+ internal_properties : CAAAAAgAAABoAN7PLpwJW3EiA7WVZdCA5EwrCA1rvutcDHooMWKe

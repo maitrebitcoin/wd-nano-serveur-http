@@ -1,0 +1,18 @@
+body {
+  background-color: rgb(161, 160, 159);
+}
+button {
+  background-color: rgb(247, 182, 53);
+  border-radius: 75px;
+  margin: 15px;
+  height: 20%;
+  font-size: 90px;
+  width: 95%;
+  text-align: center;
+}
+button:hover {
+  background-color: #8e763e;
+}
+button:active {
+  background-color: #ebc23e;
+}
